@@ -31,6 +31,17 @@ async function init() {
         const timeStr = updatedAt.toLocaleTimeString('en-IN', {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
         document.getElementById('update-time').textContent = `Updated today at ${timeStr} IST`;
 
+        if (data.lpg) {
+            document.getElementById('ui-lpg').textContent = '₹' + Math.floor(data.lpg);
+            document.getElementById('ui-lpg-rate').textContent = '₹' + data.lpg.toFixed(2);
+        }
+        if (data.cng) {
+            document.getElementById('ui-cng').textContent = '₹' + Math.floor(data.cng);
+            document.getElementById('ui-cng-rate').textContent = '₹' + data.cng.toFixed(2);
+            // Also update the static Delhi/Mumbai labels playfully for CNG since it's kerala avg:
+            document.getElementById('ui-cng-rate').previousElementSibling.innerHTML = '<div class="r-name">CNG — State Avg</div><div class="r-sub">per kg</div>';
+        }
+
         // Default cities for comparison
         cmpCities = [C[0], C.find(c => c.name === 'Delhi') || C[1], C.find(c => c.name === 'Mumbai') || C[2]];
         
