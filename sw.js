@@ -1,11 +1,11 @@
-const CACHE_NAME = 'fuelrate-v2';
+const CACHE_NAME = 'fuelrate-v3';
 const ASSETS = [
   './',
   './index.html',
   './css/style.css',
   './js/app.js',
   './data/prices.js',
-  './img/icon.svg',
+  './img/icon.png',
   'https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Syne:wght@600;700;800&display=swap',
   'https://unpkg.com/lucide@latest'
 ];
