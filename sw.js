@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fuelrate-v1';
+const CACHE_NAME = 'fuelrate-v2';
 const ASSETS = [
   './',
   './index.html',
@@ -18,26 +18,42 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Return cached version or fetch from network
-        return response || fetch(event.request).then(fetchRes => {
+  const url = new URL(event.request.url);
+  
+  // For prices.js, index.html, we ALWAYS want Network-First, fallback to Cache.
+  if (url.pathname.endsWith('prices.js') || url.pathname.endsWith('/') || url.pathname.endsWith('.html')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(fetchRes => {
           return caches.open(CACHE_NAME).then(cache => {
-            // Don't cache third party API calls wildly, but app assets are fine
-            if(event.request.url.startsWith(self.location.origin)) {
-               cache.put(event.request.url, fetchRes.clone());
-            }
+            cache.put(event.request, fetchRes.clone());
             return fetchRes;
           });
-        });
-      }).catch(() => {
-        // Fallback for offline mode, specifically for the main page
-        if (event.request.mode === 'navigate') {
-            return caches.match('./index.html');
-        }
-      })
-  );
+        })
+        .catch(() => {
+          // Fallback to cache if network fails
+          return caches.match(event.request).then(res => {
+            if (res) return res;
+            if (event.request.mode === 'navigate') return caches.match('./index.html');
+          });
+        })
+    );
+  } else {
+    // For images, fonts, css, js - Cache-First, fallback to Network
+    event.respondWith(
+      caches.match(event.request)
+        .then(response => {
+          return response || fetch(event.request).then(fetchRes => {
+            return caches.open(CACHE_NAME).then(cache => {
+              if(event.request.url.startsWith(self.location.origin)) {
+                 cache.put(event.request.url, fetchRes.clone());
+              }
+              return fetchRes;
+            });
+          });
+        })
+    );
+  }
 });
 
 self.addEventListener('activate', event => {
