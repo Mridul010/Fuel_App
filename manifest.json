@@ -1,0 +1,17 @@
+{
+  "name": "FuelRate",
+  "short_name": "FuelRate",
+  "description": "Zero-Cost Daily Fuel Prices for India.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#121214",
+  "theme_color": "#D3FF32",
+  "icons": [
+    {
+      "src": "img/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
