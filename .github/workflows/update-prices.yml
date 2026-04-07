@@ -21,7 +21,9 @@ jobs:
           
       - name: Install Dependencies
         working-directory: ./scraper
-        run: npm install
+        run: |
+          npm install
+          npx puppeteer browsers install chrome
         
       - name: Run Scraper
         working-directory: ./scraper
