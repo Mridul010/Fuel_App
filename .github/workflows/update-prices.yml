@@ -34,4 +34,5 @@ jobs:
           git add data/prices.js
           # Only commit if there are changes
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update daily fuel prices"
+          git pull --rebase
           git push
