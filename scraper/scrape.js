@@ -5,31 +5,30 @@ const path = require('path');
 
 const JS_PATH = path.join(__dirname, '../data/prices.js');
 
-async function scrapeGeneral(url, keywords) {
-    if (!url) return null;
+async function scrapeStateMap(url) {
+    if (!url) return {};
+    const map = {};
     try {
         const { data } = await axios.get(url, {
             headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36' },
             timeout: 10000
         });
         const $ = cheerio.load(data);
-        let val = null;
         $('table.gold_silver_table tr').each((i, el) => {
-            const rowText = $(el).text().toLowerCase();
-            const matchesKeyword = keywords.some(k => rowText.includes(k.toLowerCase()));
-            if (matchesKeyword && !val) {
-                const tdText = $(el).find('td').eq(1).text() || $(el).find('strong').text();
-                const match = tdText.match(/([0-9,]+\.[0-9]{2})/);
-                if (match) {
-                    const num = parseFloat(match[1].replace(/,/g, ''));
-                    if (num > 10) val = num;
+            const tds = $(el).find('td');
+            if (tds.length >= 2) {
+                const state = tds.eq(0).text().trim().toLowerCase();
+                const priceMatch = tds.eq(1).text().match(/([0-9,]+\.[0-9]{2})/);
+                if (priceMatch) {
+                    const price = parseFloat(priceMatch[1].replace(/,/g, ''));
+                    if (!isNaN(price) && price > 10) map[state] = price;
                 }
             }
         });
-        return val;
     } catch (e) {
-        return null;
+        console.error("Failed to map states for", url);
     }
+    return map;
 }
 
 async function scrapePrice(url, cityName) {
@@ -50,10 +49,8 @@ async function scrapePrice(url, cityName) {
             
             if (match) {
                 const num = parseFloat(match[1]);
-                // Save the first reasonable price as a fallback
                 if (num > 60 && num < 150 && !fallback) fallback = num;
                 
-                // If this specific row mentions the city or "today", pick it
                 if (rowText.includes(cityName.toLowerCase()) || rowText.includes('today') || rowText.includes('1 litre')) {
                     if (num > 60 && num < 150 && !val) val = num;
                 }
@@ -79,6 +76,14 @@ async function run() {
     const jsonStr = rawJs.replace('const FUEL_DATA = ', '').trim().replace(/;$/, '');
     const data = JSON.parse(jsonStr);
 
+    console.log(`Scraping LPG State Map...`);
+    const lpgMap = await scrapeStateMap('https://www.goodreturns.in/lpg-price.html');
+    await new Promise(r => setTimeout(r, 1000));
+    
+    console.log(`Scraping CNG State Map...`);
+    const cngMap = await scrapeStateMap('https://www.goodreturns.in/cng-price.html');
+    await new Promise(r => setTimeout(r, 1000));
+
     for (let c of data.cities) {
         if (c.goodreturns_url) {
             console.log(`Scraping Petrol for ${c.name}...`);
@@ -92,18 +97,12 @@ async function run() {
             if (d) c.d = d;
             await new Promise(r => setTimeout(r, 1000));
         }
+        
+        // Map LPG and CNG to the city using its state
+        const stateLow = c.state.toLowerCase();
+        c.lpg = lpgMap[stateLow] || 912;
+        c.cng = cngMap[stateLow] || 89;
     }
-    
-    // Scrape LPG (Kerala Average)
-    console.log(`Scraping LPG...`);
-    const lpg = await scrapeGeneral('https://www.goodreturns.in/lpg-price.html', ['kerala', 'ernakulam', 'kochi']);
-    if (lpg) data.lpg = lpg;
-    await new Promise(r => setTimeout(r, 1000));
-    
-    // Scrape CNG (Kerala Average)
-    console.log(`Scraping CNG...`);
-    const cng = await scrapeGeneral('https://www.goodreturns.in/cng-price.html', ['kerala', 'ernakulam']);
-    if (cng) data.cng = cng;
 
     const baseCity = data.cities[0];
     data.history.p.shift();
