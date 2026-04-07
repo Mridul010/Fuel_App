@@ -31,16 +31,7 @@ async function init() {
         const timeStr = updatedAt.toLocaleTimeString('en-IN', {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
         document.getElementById('update-time').textContent = `Updated today at ${timeStr} IST`;
 
-        if (data.lpg) {
-            document.getElementById('ui-lpg').textContent = '₹' + Math.floor(data.lpg);
-            document.getElementById('ui-lpg-rate').textContent = '₹' + data.lpg.toFixed(2);
-        }
-        if (data.cng) {
-            document.getElementById('ui-cng').textContent = '₹' + Math.floor(data.cng);
-            document.getElementById('ui-cng-rate').textContent = '₹' + data.cng.toFixed(2);
-            // Also update the static Delhi/Mumbai labels playfully for CNG since it's kerala avg:
-            document.getElementById('ui-cng-rate').previousElementSibling.innerHTML = '<div class="r-name">CNG — State Avg</div><div class="r-sub">per kg</div>';
-        }
+        // LPG and CNG are now city-specific and updated in setCity()
 
         // Default cities for comparison
         cmpCities = [C[0], C.find(c => c.name === 'Delhi') || C[1], C.find(c => c.name === 'Mumbai') || C[2]];
@@ -73,6 +64,22 @@ function setCity(c) {
     document.getElementById('lcity').textContent = c.name + ', ' + c.state;
     countUp('pp', c.p); 
     countUp('dp', c.d);
+    
+    // Dynamic Location-based LPG & CNG
+    if (c.lpg) {
+        document.getElementById('ui-lpg').textContent = '₹' + Math.floor(c.lpg);
+        if(document.getElementById('ui-lpg-rate')) {
+            document.getElementById('ui-lpg-rate').textContent = '₹' + c.lpg.toFixed(2);
+            document.getElementById('ui-lpg-rate').previousElementSibling.innerHTML = `<div class="r-name">LPG Cylinder</div><div class="r-sub">${c.state} Avg (14.2 kg)</div>`;
+        }
+    }
+    if (c.cng) {
+        document.getElementById('ui-cng').textContent = '₹' + Math.floor(c.cng);
+        if(document.getElementById('ui-cng-rate')) {
+            document.getElementById('ui-cng-rate').textContent = '₹' + c.cng.toFixed(2);
+            document.getElementById('ui-cng-rate').previousElementSibling.innerHTML = `<div class="r-name">CNG</div><div class="r-sub">${c.state} Avg (per kg)</div>`;
+        }
+    }
     
     // Calculate simple badge change based on last history (mock for now)
     const pDiff = +(c.p - HIST.p[5]).toFixed(2);
