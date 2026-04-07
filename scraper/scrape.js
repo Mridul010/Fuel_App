@@ -1,86 +1,124 @@
-const fs = require('fs');
-const path = require('path');
 const axios = require('axios');
 const cheerio = require('cheerio');
+const fs = require('fs');
+const path = require('path');
 
 const JS_PATH = path.join(__dirname, '../data/prices.js');
 
-async function scrapePrice(url) {
+async function scrapeGeneral(url, keywords) {
     if (!url) return null;
     try {
         const { data } = await axios.get(url, {
-            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)' }
+            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36' },
+            timeout: 10000
         });
         const $ = cheerio.load(data);
-        // Look for the specific Goodreturns price element (usually big text in a bold element)
-        let priceStr = $('.price_number, .gold_18, .blue-text, strong').filter(function() {
-            return $(this).text().includes('₹');
-        }).first().text();
-
-        // Fallback: look for generic bold element that looks like a price (XX.XX)
-        if (!priceStr) {
-            priceStr = $('strong, b, span').filter(function() {
-                return /^\s*(?:₹|Rs\.?)?\s*\d{2,3}\.\d{2}\s*$/.test($(this).text());
-            }).first().text();
-        }
-
-        const match = priceStr.match(/\d{2,3}\.\d{2}/);
-        return match ? parseFloat(match[0]) : null;
+        let val = null;
+        $('table.gold_silver_table tr').each((i, el) => {
+            const rowText = $(el).text().toLowerCase();
+            const matchesKeyword = keywords.some(k => rowText.includes(k.toLowerCase()));
+            if (matchesKeyword && !val) {
+                const tdText = $(el).find('td').eq(1).text() || $(el).find('strong').text();
+                const match = tdText.match(/([0-9,]+\.[0-9]{2})/);
+                if (match) {
+                    const num = parseFloat(match[1].replace(/,/g, ''));
+                    if (num > 10) val = num;
+                }
+            }
+        });
+        return val;
     } catch (e) {
-        console.error(`Failed to scrape ${url}: ${e.message}`);
+        return null;
+    }
+}
+
+async function scrapePrice(url, cityName) {
+    if (!url) return null;
+    let fallback = null;
+    try {
+        const { data } = await axios.get(url, {
+            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0.0.0 Safari/537.36' },
+            timeout: 10000
+        });
+        const $ = cheerio.load(data);
+        let val = null;
+        
+        $('table.gold_silver_table tr').each((i, el) => {
+            const rowText = $(el).text().toLowerCase();
+            const tdText = $(el).find('td').eq(1).text();
+            const match = tdText.match(/([0-9]{2,3}\.[0-9]{2})/);
+            
+            if (match) {
+                const num = parseFloat(match[1]);
+                // Save the first reasonable price as a fallback
+                if (num > 60 && num < 150 && !fallback) fallback = num;
+                
+                // If this specific row mentions the city or "today", pick it
+                if (rowText.includes(cityName.toLowerCase()) || rowText.includes('today') || rowText.includes('1 litre')) {
+                    if (num > 60 && num < 150 && !val) val = num;
+                }
+            }
+        });
+        
+        if (!val) {
+            $('.price_details strong').each((i, el) => {
+                const num = parseFloat($(el).text().replace(/[^0-9.]/g, ''));
+                if (!isNaN(num) && num > 60 && num < 150 && !val) val = num;
+            });
+        }
+        
+        return val || fallback;
+    } catch (e) {
         return null;
     }
 }
 
 async function run() {
     console.log('Starting daily fuel price scrape...');
-    
-    // Read the JS file and strip out "const FUEL_DATA = " and ";"
     const rawJs = fs.readFileSync(JS_PATH, 'utf8');
     const jsonStr = rawJs.replace('const FUEL_DATA = ', '').trim().replace(/;$/, '');
     const data = JSON.parse(jsonStr);
-    
-    let updatedCities = 0;
-    
-    // We will update the top few cities synchronously to avoid rate limits, or Promise.all
-    // For safety, let's delay between requests to be polite.
+
     for (let c of data.cities) {
         if (c.goodreturns_url) {
             console.log(`Scraping Petrol for ${c.name}...`);
-            const p = await scrapePrice(c.goodreturns_url);
+            const p = await scrapePrice(c.goodreturns_url, c.name.split(' ')[0]);
             if (p) c.p = p;
-            await new Promise(r => setTimeout(r, 1000)); // sleep 1s
+            await new Promise(r => setTimeout(r, 1000));
         }
         if (c.d_goodreturns_url) {
             console.log(`Scraping Diesel for ${c.name}...`);
-            const d = await scrapePrice(c.d_goodreturns_url);
+            const d = await scrapePrice(c.d_goodreturns_url, c.name.split(' ')[0]);
             if (d) c.d = d;
-            await new Promise(r => setTimeout(r, 1000)); // sleep 1s
+            await new Promise(r => setTimeout(r, 1000));
         }
-        updatedCities++;
     }
+    
+    // Scrape LPG (Kerala Average)
+    console.log(`Scraping LPG...`);
+    const lpg = await scrapeGeneral('https://www.goodreturns.in/lpg-price.html', ['kerala', 'ernakulam', 'kochi']);
+    if (lpg) data.lpg = lpg;
+    await new Promise(r => setTimeout(r, 1000));
+    
+    // Scrape CNG (Kerala Average)
+    console.log(`Scraping CNG...`);
+    const cng = await scrapeGeneral('https://www.goodreturns.in/cng-price.html', ['kerala', 'ernakulam']);
+    if (cng) data.cng = cng;
 
-    // Update History (simplified mock logic for the prototype)
     const baseCity = data.cities[0];
-    
     data.history.p.shift();
-    data.history.p.push(baseCity.p);
-    
     data.history.d.shift();
-    data.history.d.push(baseCity.d);
-
-    // Shift days
-    const d = new Date();
     data.history.days.shift();
-    const dayStr = d.toLocaleDateString('en-IN', {weekday:'short'});
-    data.history.days.push(dayStr);
+    data.history.p.push(baseCity.p);
+    data.history.d.push(baseCity.d);
     
+    const d = new Date();
+    data.history.days.push(d.toLocaleDateString('en-IN', {weekday:'short'}));
     data.updatedAt = d.toISOString();
 
-    // Write back as a valid JS file
-    const outputContent = `const FUEL_DATA = ${JSON.stringify(data, null, 2)};`;
+    const outputContent = `const FUEL_DATA = ${JSON.stringify(data, null, 2)};\n`;
     fs.writeFileSync(JS_PATH, outputContent);
-    console.log(`Scraping finished. Updated ${updatedCities} cities.`);
+    console.log('Scrape complete. Updated prices.js successfully.');
 }
 
 run().catch(console.error);
