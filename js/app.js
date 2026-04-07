@@ -339,3 +339,28 @@ document.getElementById('thbtn').onclick = function() {
 
 // Start logic
 window.addEventListener('DOMContentLoaded', init);
+
+// PWA Install Logic
+let deferredPrompt;
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(console.error);
+  });
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+});
+
+window.installApp = function() {
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+      deferredPrompt = null;
+    });
+  } else {
+    alert("App is already installed, or your browser blocked the prompt (e.g. running in simple browser tab without HTTPS).");
+  }
+};
