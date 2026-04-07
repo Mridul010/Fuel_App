@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>FuelRate</title>
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="hdr">
+    <div class="logo">Fuel<span>Rate</span></div>
+    <div class="hdr-r">
+        <div class="date-p" id="dtp"></div>
+        <button class="theme-b" id="thbtn" aria-label="Toggle theme">
+            <i data-lucide="sun" class="icon-sun"></i>
+            <i data-lucide="moon" class="icon-moon" style="display:none;"></i>
+        </button>
+    </div>
+</div>
+
+<div id="app">
+
+    <!-- HOME -->
+    <div class="screen" id="s-home">
+        <div class="loc-bar" onclick="openM()">
+            <div class="loc-l">
+                <div class="l-dot"></div>
+                <div class="l-city" id="lcity">Detecting…</div>
+            </div>
+            <div class="l-chg">Change <i data-lucide="chevron-right" width="14" height="14"></i></div>
+        </div>
+
+        <div class="p-row">
+            <div class="pc pe">
+                <div class="p-lbl">Petrol</div>
+                <div class="p-num" id="pp">—</div>
+                <div class="p-unit">₹ per litre</div>
+                <div class="cbadge nn" id="pb">—</div>
+            </div>
+            <div class="pc di">
+                <div class="p-lbl">Diesel</div>
+                <div class="p-num" id="dp">—</div>
+                <div class="p-unit">₹ per litre</div>
+                <div class="cbadge nn" id="db">—</div>
+            </div>
+        </div>
+
+        <div class="fresh">
+            <div class="f-dot"></div>
+            <span id="update-time">Updated today at 6:00 AM IST</span>
+        </div>
+
+        <div class="pills">
+            <div class="pill" onclick="goS('rates')">
+                <i data-lucide="flame" width="14" height="14" style="color:var(--lpg)"></i>
+                LPG <b>₹912</b>
+            </div>
+            <div class="pill" onclick="goS('rates')">
+                <i data-lucide="wind" width="14" height="14" style="color:var(--cng)"></i>
+                CNG <b>₹89</b>
+            </div>
+            <div class="pill" onclick="goS('rates')">
+                <i data-lucide="droplet" width="14" height="14" style="color:var(--cr)"></i>
+                Crude <b>$74</b>
+            </div>
+        </div>
+
+        <div class="slbl">7-day trend</div>
+        <div class="ch-card">
+            <div class="ch-tabs">
+                <button class="ctab on p" onclick="swTab('p',this)">Petrol</button>
+                <button class="ctab d"    onclick="swTab('d',this)">Diesel</button>
+            </div>
+            <div class="ch-wrap"><canvas id="cv"></canvas></div>
+            <div class="ch-days" id="cdays"></div>
+        </div>
+
+        <div class="slbl">Nearby cities</div>
+        <div class="nb-card" id="nb"></div>
+
+        <div class="st-ban" id="stban"></div>
+        <div class="mt20 pb20"></div>
+    </div>
+
+    <!-- COMPARE -->
+    <div class="screen hide" id="s-compare">
+        <div class="scr-hdr">Compare cities</div>
+        <div class="chips" id="chips"></div>
+        <div class="slbl">Side by side</div>
+        <div class="cmp-tbl">
+            <div class="cmp-hd">
+                <div>City</div>
+                <div style="text-align:right">Petrol</div>
+                <div style="text-align:right">Diesel</div>
+                <div style="text-align:right">vs you</div>
+            </div>
+            <div id="crows"></div>
+        </div>
+        <div class="insight" id="ins"></div>
+        <div class="mt20 pb20"></div>
+    </div>
+
+    <!-- RATES -->
+    <div class="screen hide" id="s-rates">
+        <div class="scr-hdr">All rates today</div>
+
+        <div class="rate-card">
+            <div class="rc-title">Your city — <span id="rc-city">Kochi</span></div>
+            <div class="r-row">
+                <div><div class="r-name">Petrol</div><div class="r-sub">Updated 6:00 AM IST</div></div>
+                <div class="r-val" style="color:var(--pe)" id="rc-p">—</div>
+            </div>
+            <div class="r-row">
+                <div><div class="r-name">Diesel</div><div class="r-sub">Updated 6:00 AM IST</div></div>
+                <div class="r-val" style="color:var(--di)" id="rc-d">—</div>
+            </div>
+        </div>
+
+        <div class="rate-card">
+            <div class="rc-title">National rates</div>
+            <div class="r-row">
+                <div><div class="r-name">LPG Cylinder</div><div class="r-sub">14.2 kg domestic</div></div>
+                <div class="r-val" style="color:var(--lpg)">₹912.50</div>
+            </div>
+            <div class="r-row">
+                <div><div class="r-name">CNG — Delhi</div><div class="r-sub">per kg</div></div>
+                <div class="r-val" style="color:var(--cng)">₹89.10</div>
+            </div>
+            <div class="r-row">
+                <div><div class="r-name">CNG — Mumbai</div><div class="r-sub">per kg</div></div>
+                <div class="r-val" style="color:var(--cng)">₹94.50</div>
+            </div>
+        </div>
+
+        <div class="rate-card">
+            <div class="rc-title">Global context</div>
+            <div class="r-row">
+                <div><div class="r-name">Brent Crude</div><div class="r-sub">USD per barrel</div></div>
+                <div class="r-val" style="color:var(--cr)">$74.30</div>
+            </div>
+            <div class="r-row">
+                <div><div class="r-name">USD / INR</div><div class="r-sub">Exchange rate today</div></div>
+                <div class="r-val" style="color:var(--t)">₹83.42</div>
+            </div>
+            <div style="padding:10px 18px 14px;font-size:12px;color:var(--t2);line-height:1.65">
+                These two numbers determine tomorrow's revision. When crude rises or rupee weakens, prices go up at 6 AM.
+            </div>
+        </div>
+
+        <div class="rate-card">
+            <div class="rc-title">Price breakdown — petrol</div>
+            <div class="bb">
+                <div class="bbs" style="background:#4cde88;width:52%"></div>
+                <div class="bbs" style="background:#ff9d3d;width:19%"></div>
+                <div class="bbs" style="background:#ff5252;width:14%"></div>
+                <div class="bbs" style="background:#c87eff;width:4%"></div>
+                <div class="bbs" style="background:#60b4ff;width:11%"></div>
+            </div>
+            <div style="padding:0 18px 16px;display:grid;grid-template-columns:1fr 1fr;gap:7px">
+                <div style="font-size:12px;color:var(--t2)"><span style="color:#4cde88">■</span> Base cost ₹54.52</div>
+                <div style="font-size:12px;color:var(--t2)"><span style="color:#ff9d3d">■</span> Central excise ₹19.90</div>
+                <div style="font-size:12px;color:var(--t2)"><span style="color:#ff5252">■</span> State VAT ₹15.00</div>
+                <div style="font-size:12px;color:var(--t2)"><span style="color:#c87eff">■</span> Dealer comm ₹3.77</div>
+                <div style="font-size:12px;color:var(--t2)"><span style="color:#60b4ff">■</span> Transport ₹11.75</div>
+            </div>
+        </div>
+
+        <div class="mt20 pb20"></div>
+    </div>
+
+    <!-- MORE -->
+    <div class="screen hide" id="s-more">
+        <div class="scr-hdr">More</div>
+        
+        <div class="rate-card">
+            <div class="r-row" style="cursor:pointer;">
+                <div><div class="r-name">About FuelRate</div><div class="r-sub">Version 2.0.0</div></div>
+                <i data-lucide="info" width="18" height="18" style="color:var(--t2)"></i>
+            </div>
+            <div class="r-row" style="cursor:pointer;">
+                <div><div class="r-name">Data Sources</div><div class="r-sub">Verified daily updates</div></div>
+                <i data-lucide="database" width="18" height="18" style="color:var(--t2)"></i>
+            </div>
+            <div class="r-row" style="cursor:pointer;" onclick="installApp()">
+                <div><div class="r-name">Install App</div><div class="r-sub">Add to home screen</div></div>
+                <i data-lucide="download" width="18" height="18" style="color:var(--pe)"></i>
+            </div>
+        </div>
+
+        <div style="text-align:center; padding:20px; font-size:12px; color:var(--t3);">
+            Data scraping powered by GitHub Actions.<br/>Open source and free forever.
+        </div>
+    </div>
+
+</div>
+
+<div class="bnav">
+    <div class="ni on" id="n-home"    onclick="goS('home')">   
+        <div class="ni-ico"><i data-lucide="fuel"></i></div>
+        <div class="ni-lbl">Prices</div> 
+        <div class="ni-dot"></div>
+    </div>
+    <div class="ni"    id="n-compare" onclick="goS('compare')">
+        <div class="ni-ico"><i data-lucide="arrow-left-right"></i></div> 
+        <div class="ni-lbl">Compare</div>
+        <div class="ni-dot"></div>
+    </div>
+    <div class="ni"    id="n-rates"   onclick="goS('rates')">  
+        <div class="ni-ico"><i data-lucide="indian-rupee"></i></div> 
+        <div class="ni-lbl">Rates</div>  
+        <div class="ni-dot"></div>
+    </div>
+    <div class="ni"    id="n-more"    onclick="goS('more')">                            
+        <div class="ni-ico"><i data-lucide="more-horizontal"></i></div>
+        <div class="ni-lbl">More</div>   
+        <div class="ni-dot"></div>
+    </div>
+</div>
+
+<div class="mover" id="modal" onclick="maybeClose(event)">
+    <div class="mbox">
+        <div class="mhandle"></div>
+        <div class="msw">
+            <div style="position:relative;">
+                <i data-lucide="search" width="16" height="16" style="position:absolute; left:12px; top:14px; color:var(--t2);"></i>
+                <input class="minput" id="minp" placeholder="Search any Indian city…" oninput="filterC(this.value)">
+            </div>
+        </div>
+        <div class="mlist" id="mlist"></div>
+    </div>
+</div>
+
+<script src="data/prices.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
