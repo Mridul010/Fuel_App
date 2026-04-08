@@ -185,9 +185,10 @@ body {
 .f-dot { width:6px; height:6px; border-radius:50%; background:var(--dn); flex-shrink:0; animation:pdot 2.2s ease-in-out infinite; }
 .refresh-btn {
   margin-left:auto; background:none; border:none; color:var(--t3);
-  cursor:pointer; padding:4px; display:flex; align-items:center; justify-content:center;
-  border-radius:50%; transition:color 0.2s, background 0.2s; outline:none;
+  cursor:pointer; padding:4px 8px; display:flex; align-items:center; justify-content:center;
+  gap:4px; border-radius:12px; transition:color 0.2s, background 0.2s; outline:none;
 }
+.refresh-txt { font-size:11px; font-family:'DM Sans', sans-serif; }
 .refresh-btn:hover { color:var(--t2); background:var(--s2); }
 .refresh-btn:active { color:var(--pe); }
 .refresh-btn.spinning svg { animation:spin 0.7s linear infinite; }
