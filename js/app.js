@@ -37,11 +37,16 @@ async function init() {
         cmpCities = [C[0], C.find(c => c.name === 'Delhi') || C[1], C.find(c => c.name === 'Mumbai') || C[2]];
         
         // Location logic
-        if(navigator.geolocation) {
+        const savedCityName = localStorage.getItem('fuelrate_city');
+        const savedCity = savedCityName ? C.find(c => c.name === savedCityName) : null;
+        
+        if (savedCity) {
+            setCity(savedCity);
+        } else if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 p => setCity(nearest(p.coords.latitude, p.coords.longitude)),
                 () => setCity(C[0]),
-                {timeout: 5000}
+                {enableHighAccuracy: true, timeout: 5000, maximumAge: 0}
             );
         } else {
             setCity(C[0]);
@@ -61,17 +66,21 @@ function nearest(la, lo) {
 function setCity(c) {
     if(!c) return;
     city = c;
+    localStorage.setItem('fuelrate_city', c.name);
     document.getElementById('lcity').textContent = c.name + ', ' + c.state;
     countUp('pp', c.p); 
     countUp('dp', c.d);
     
-    // Dynamic Location-based LPG & CNG
+    // Dynamic Location-based LPG & CNG & Crude
     if (c.lpg) {
         document.getElementById('ui-lpg').textContent = '₹' + Math.floor(c.lpg);
         if(document.getElementById('ui-lpg-rate')) {
             document.getElementById('ui-lpg-rate').textContent = '₹' + c.lpg.toFixed(2);
             document.getElementById('ui-lpg-rate').previousElementSibling.innerHTML = `<div class="r-name">LPG Cylinder</div><div class="r-sub">${c.state} Avg (14.2 kg)</div>`;
         }
+    } else {
+        document.getElementById('ui-lpg').textContent = '—';
+        if(document.getElementById('ui-lpg-rate')) document.getElementById('ui-lpg-rate').textContent = '—';
     }
     if (c.cng) {
         document.getElementById('ui-cng').textContent = '₹' + Math.floor(c.cng);
@@ -79,6 +88,13 @@ function setCity(c) {
             document.getElementById('ui-cng-rate').textContent = '₹' + c.cng.toFixed(2);
             document.getElementById('ui-cng-rate').previousElementSibling.innerHTML = `<div class="r-name">CNG</div><div class="r-sub">${c.state} Avg (per kg)</div>`;
         }
+    } else {
+        document.getElementById('ui-cng').textContent = '—';
+        if(document.getElementById('ui-cng-rate')) document.getElementById('ui-cng-rate').textContent = '—';
+    }
+    // Crude usually isn't city specific but update if the data object passes it along with city
+    if (c.crude) {
+        if(document.getElementById('ui-cr')) document.getElementById('ui-cr').textContent = '$' + c.crude;
     }
     
     // Calculate simple badge change based on last history (mock for now)
