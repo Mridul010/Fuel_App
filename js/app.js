@@ -300,12 +300,18 @@ window.openM = function(f = 'home') {
     }, 200);
 }
 
-window.maybeClose = function(e) {
-    if(e.target === document.getElementById('modal')) window.closeM();
+window.openAbout = function() {
+    document.getElementById('about-modal').classList.add('on');
 }
 
-window.closeM = function() {
-    document.getElementById('modal').classList.remove('on');
+window.maybeClose = function(e) {
+    if(e.target.classList.contains('mover')) {
+        e.target.classList.remove('on');
+    }
+}
+
+window.closeM = function(id = 'modal') {
+    document.getElementById(id).classList.remove('on');
 }
 
 function renderCL(list) {
