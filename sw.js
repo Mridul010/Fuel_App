@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fuelrate-v7';
+const CACHE_NAME = 'fuelrate-v8';
 const ASSETS = [
   './',
   './index.html',
