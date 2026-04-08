@@ -191,7 +191,7 @@
         <div class="scr-hdr">More</div>
         
         <div class="rate-card">
-            <div class="r-row" style="cursor:pointer;">
+            <div class="r-row" style="cursor:pointer;" onclick="openAbout()">
                 <div><div class="r-name">About FuelRate</div><div class="r-sub">Version 2.0.0</div></div>
                 <i data-lucide="info" width="18" height="18" style="color:var(--t2)"></i>
             </div>
@@ -205,22 +205,7 @@
             </div>
         </div>
 
-        <div class="rate-card mt16">
-            <div class="rc-title">Mission & Creator</div>
-            <div style="padding:16px; font-size:13.5px; line-height:1.6; color:var(--t2);">
-                <p>Hi, I'm <b>Mridul</b>. I built FuelRate based on a simple philosophy: <b>One Problem, One Solution.</b></p>
-                <p style="margin-top:10px;">I was tired of never knowing if the fuel price on my phone was actually right at the pump. So, I created this tool to give you <b>100% accurate, live data</b> and an easy way to <b>compare prices across cities</b>—so you always know exactly where it's cheapest to fuel up.</p>
-                <div style="margin-top:16px; padding-top:16px; border-top:1px solid var(--b); display:flex; align-items:center; gap:12px;">
-                    <div style="width:40px; height:40px; border-radius:50%; background:var(--pe-d); display:flex; align-items:center; justify-content:center; color:var(--pe); font-weight:700; font-size:18px;">
-                        M
-                    </div>
-                    <div>
-                        <div style="font-weight:600; color:var(--t);">Mridul</div>
-                        <div style="font-size:11px;">Developer & FuelRate Creator</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
 
         <div style="text-align:center; padding:24px 20px 40px; font-size:11px; color:var(--t3); letter-spacing:0.02em;">
             Data scraping powered by GitHub Actions.<br/>
@@ -263,6 +248,33 @@
             </div>
         </div>
         <div class="mlist" id="mlist"></div>
+    </div>
+</div>
+
+<div class="mover" id="about-modal" onclick="maybeClose(event)">
+    <div class="mbox" style="height:auto; max-height:85vh; padding-bottom:30px;">
+        <div class="mhandle"></div>
+        <div style="padding:24px 22px 10px;">
+            <div style="font-family:'Syne', sans-serif; font-size:20px; font-weight:700; color:var(--t);">Mission & Creator</div>
+        </div>
+        <div style="padding:16px 22px; font-size:14.5px; line-height:1.65; color:var(--t2); overflow-y:auto;">
+            <p>Hi, I'm <b>Mridul</b>. I built FuelRate based on a simple philosophy: <b>One Problem, One Solution.</b></p>
+            <p style="margin-top:14px;">I was tired of never knowing if the fuel price on my phone was actually right at the pump. So, I created this tool to give you <b>100% accurate, live data</b> and an easy way to <b>compare prices across cities</b>—so you always know exactly where it's cheapest to refuel.</p>
+            <p style="margin-top:14px;">No ads, no data collection, no nonsense. Just the prices you need, when you need them.</p>
+            
+            <div style="margin-top:24px; padding-top:20px; border-top:1px solid var(--b); display:flex; align-items:center; gap:14px;">
+                <div style="width:48px; height:48px; border-radius:50%; background:var(--pe-d); display:flex; align-items:center; justify-content:center; color:var(--pe); font-weight:700; font-size:20px;">
+                    M
+                </div>
+                <div>
+                    <div style="font-weight:600; color:var(--t); font-size:15px;">Mridul</div>
+                    <div style="font-size:12px; color:var(--t3);">Developer & FuelRate Creator</div>
+                </div>
+            </div>
+        </div>
+        <div style="padding:10px 22px; text-align:center;">
+             <button class="pill" style="width:100%; justify-content:center; padding:12px;" onclick="closeM('about-modal')">Close</button>
+        </div>
     </div>
 </div>
 
