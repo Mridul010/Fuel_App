@@ -183,6 +183,15 @@ body {
 /* FRESHNESS */
 .fresh { display:flex; align-items:center; gap:7px; padding:10px 22px 0; font-size:12px; color:var(--t2); transition:color 0.3s; }
 .f-dot { width:6px; height:6px; border-radius:50%; background:var(--dn); flex-shrink:0; animation:pdot 2.2s ease-in-out infinite; }
+.refresh-btn {
+  margin-left:auto; background:none; border:none; color:var(--t3);
+  cursor:pointer; padding:4px; display:flex; align-items:center; justify-content:center;
+  border-radius:50%; transition:color 0.2s, background 0.2s; outline:none;
+}
+.refresh-btn:hover { color:var(--t2); background:var(--s2); }
+.refresh-btn:active { color:var(--pe); }
+.refresh-btn.spinning svg { animation:spin 0.7s linear infinite; }
+@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 
 /* PILLS */
 .pills { display:flex; gap:8px; padding:16px 22px 0; overflow-x:auto; scrollbar-width:none; }
