@@ -59,13 +59,21 @@ async function scrapePrice(browser, url, cityName) {
     const html = await getHtml(browser, url);
     if(!html) return null;
     
+    // Strategy 1: Big green block with " / Ltr"
+    let m = html.match(/([\d]{2,3}\.[\d]{2})\s*\/\s*Ltr/i);
+    if (m) return parseFloat(m[1]);
+    
+    // Strategy 2: Introductory paragraph "is at ₹XXX per litre"
+    m = html.match(/is at [^\d]*([\d]{2,3}\.[\d]{2})\s*per/i);
+    if (m) return parseFloat(m[1]);
+    
     let fallback = null;
     let val = null;
     const $ = cheerio.load(html);
     
-    // Logic 1: Find row with city name
+    // Logic 1: Find row with exactly the city name or purely the date
     $('tr').each((i, el) => {
-        const rowText = $(el).text().toLowerCase();
+        const rowText = $(el).text().toLowerCase().trim();
         const tdText = $(el).find('td').eq(1).text();
         const match = tdText ? tdText.match(/([0-9]{2,3}\.[0-9]{2})/) : null;
         
@@ -73,7 +81,8 @@ async function scrapePrice(browser, url, cityName) {
             const num = parseFloat(match[1]);
             if (num > 60 && num < 150 && !fallback) fallback = num; // any valid price fallback
             
-            if (rowText.includes(cityName.toLowerCase()) || rowText.includes('today') || rowText.includes('1 litre')) {
+            // Only accept if row explicitly contains city name
+            if (rowText.includes(cityName.toLowerCase())) {
                 if (num > 60 && num < 150 && !val) val = num;
             }
         }
