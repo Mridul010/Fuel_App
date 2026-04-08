@@ -1,4 +1,4 @@
-const CACHE_NAME = 'fuelrate-v3';
+const CACHE_NAME = 'fuelrate-v4';
 const ASSETS = [
   './',
   './index.html',
@@ -11,6 +11,7 @@ const ASSETS = [
 ];
 
 self.addEventListener('install', event => {
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(ASSETS))
@@ -20,8 +21,9 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   
-  // For prices.js, index.html, we ALWAYS want Network-First, fallback to Cache.
-  if (url.pathname.endsWith('prices.js') || url.pathname.endsWith('/') || url.pathname.endsWith('.html')) {
+  // For data, HTML, JS, CSS — ALWAYS Network-First so updates propagate fast
+  if (url.pathname.endsWith('prices.js') || url.pathname.endsWith('app.js') ||
+      url.pathname.endsWith('style.css') || url.pathname.endsWith('/') || url.pathname.endsWith('.html')) {
     event.respondWith(
       fetch(event.request)
         .then(fetchRes => {
