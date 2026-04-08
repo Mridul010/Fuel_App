@@ -398,3 +398,55 @@ window.installApp = function() {
     alert("App is already installed, or your browser blocked the prompt (e.g. running in simple browser tab without HTTPS).");
   }
 };
+
+// Refresh data — clears cached prices.js and reloads fresh data from server
+window.refreshData = async function() {
+  const btn = document.getElementById('refresh-btn');
+  btn.classList.add('spinning');
+  
+  try {
+    // Delete prices.js from service worker cache
+    const cacheNames = await caches.keys();
+    for (const name of cacheNames) {
+      const cache = await caches.open(name);
+      const keys = await cache.keys();
+      for (const key of keys) {
+        if (key.url.includes('prices.js')) {
+          await cache.delete(key);
+        }
+      }
+    }
+    
+    // Force-fetch fresh prices.js from network (bypass cache)
+    const resp = await fetch('./data/prices.js?t=' + Date.now(), { cache: 'no-store' });
+    const text = await resp.text();
+    
+    // Execute the fresh script to update FUEL_DATA
+    const fn = new Function(text + '\nreturn FUEL_DATA;');
+    const freshData = fn();
+    
+    // Re-apply
+    C = freshData.cities;
+    HIST = freshData.history;
+    
+    const updatedAt = new Date(freshData.updatedAt);
+    const timeStr = updatedAt.toLocaleTimeString('en-IN', {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
+    document.getElementById('update-time').textContent = `Updated today at ${timeStr} IST`;
+    
+    // Re-set city (use saved or current)
+    const savedName = localStorage.getItem('fuelrate_city');
+    const match = savedName ? C.find(c => c.name === savedName) : null;
+    setCity(match || city || C[0]);
+    
+    // Also refresh the SW itself
+    if (navigator.serviceWorker && navigator.serviceWorker.controller) {
+      navigator.serviceWorker.controller.postMessage({ type: 'REFRESH' });
+    }
+    
+  } catch (e) {
+    console.error('Refresh failed:', e);
+    document.getElementById('update-time').textContent = 'Refresh failed — check connection';
+  }
+  
+  setTimeout(() => btn.classList.remove('spinning'), 700);
+};
