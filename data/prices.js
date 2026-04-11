@@ -16,8 +16,8 @@ const FUEL_DATA = {
     {
       "name": "Kollam",
       "state": "Kerala",
-      "p": 107.01,
-      "d": 95.91,
+      "p": 106.99,
+      "d": 95.89,
       "lpg": 922,
       "cng": 90,
       "la": 8.89,
@@ -42,8 +42,8 @@ const FUEL_DATA = {
     {
       "name": "Alappuzha",
       "state": "Kerala",
-      "p": 105.75,
-      "d": 94.73,
+      "p": 106.47,
+      "d": 95.4,
       "lpg": 920,
       "cng": 90,
       "la": 9.49,
@@ -55,8 +55,8 @@ const FUEL_DATA = {
     {
       "name": "Kottayam",
       "state": "Kerala",
-      "p": 105.88,
-      "d": 94.86,
+      "p": 106.14,
+      "d": 95.09,
       "lpg": 920,
       "cng": 80.5,
       "la": 9.59,
@@ -94,8 +94,8 @@ const FUEL_DATA = {
     {
       "name": "Thrissur",
       "state": "Kerala",
-      "p": 106.22,
-      "d": 95.18,
+      "p": 105.98,
+      "d": 94.95,
       "lpg": 925,
       "cng": 90.5,
       "la": 10.52,
@@ -107,8 +107,8 @@ const FUEL_DATA = {
     {
       "name": "Palakkad",
       "state": "Kerala",
-      "p": 106.94,
-      "d": 95.85,
+      "p": 107.15,
+      "d": 96.04,
       "lpg": 931.5,
       "cng": 90.5,
       "la": 10.78,
@@ -120,8 +120,8 @@ const FUEL_DATA = {
     {
       "name": "Malappuram",
       "state": "Kerala",
-      "p": 106.42,
-      "d": 95.39,
+      "p": 106.7,
+      "d": 95.62,
       "lpg": 921.5,
       "cng": 90.5,
       "la": 11.07,
@@ -133,8 +133,8 @@ const FUEL_DATA = {
     {
       "name": "Kozhikode",
       "state": "Kerala",
-      "p": 106.1,
-      "d": 95.08,
+      "p": 105.83,
+      "d": 94.84,
       "lpg": 921.5,
       "cng": 90.5,
       "la": 11.25,
@@ -146,10 +146,10 @@ const FUEL_DATA = {
     {
       "name": "Wayanad",
       "state": "Kerala",
-      "p": 107.1,
-      "d": 95.49,
+      "p": 106.81,
+      "d": 95.75,
       "lpg": 926.5,
-      "cng": 85.5,
+      "cng": 90.5,
       "la": 11.68,
       "lo": 76.13,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-wayanad.html",
@@ -159,10 +159,10 @@ const FUEL_DATA = {
     {
       "name": "Kannur",
       "state": "Kerala",
-      "p": 105.78,
-      "d": 94.78,
-      "lpg": 920,
-      "cng": 85.5,
+      "p": 105.89,
+      "d": 94.89,
+      "lpg": 933,
+      "cng": 90.5,
       "la": 11.87,
       "lo": 75.37,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kannur.html",
@@ -172,10 +172,10 @@ const FUEL_DATA = {
     {
       "name": "Kasaragod",
       "state": "Kerala",
-      "p": 106.53,
-      "d": 95.49,
-      "lpg": 920,
-      "cng": 85.5,
+      "p": 103.54,
+      "d": 90.03,
+      "lpg": 913,
+      "cng": 80.5,
       "la": 12.5,
       "lo": 74.98,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kasargod.html",
@@ -211,8 +211,8 @@ const FUEL_DATA = {
     {
       "name": "Coimbatore",
       "state": "Tamil Nadu",
-      "p": 101.61,
-      "d": 93.2,
+      "p": 101.51,
+      "d": 93.1,
       "lpg": 942,
       "cng": 88.5,
       "la": 11.01,
@@ -238,7 +238,7 @@ const FUEL_DATA = {
       "name": "Chennai",
       "state": "Tamil Nadu",
       "p": 100.9,
-      "d": 92.49,
+      "d": 92.48,
       "lpg": 928.5,
       "cng": 91.5,
       "la": 13.08,
@@ -302,32 +302,32 @@ const FUEL_DATA = {
   ],
   "history": {
     "p": [
-      105.55,
       105.57,
       105.59,
       105.6,
       105.71,
       103.54,
+      103.54,
       103.54
     ],
     "d": [
-      94.52,
       94.54,
       94.56,
       94.58,
       94.69,
       90.03,
+      90.03,
       90.03
     ],
     "days": [
-      "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
       "Thu",
-      "Fri"
+      "Fri",
+      "Sat"
     ]
   },
-  "updatedAt": "2026-04-10T04:12:15.838Z"
+  "updatedAt": "2026-04-11T03:40:59.884Z"
 };
