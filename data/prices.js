@@ -55,8 +55,8 @@ const FUEL_DATA = {
     {
       "name": "Kottayam",
       "state": "Kerala",
-      "p": 105.99,
-      "d": 94.95,
+      "p": 105.88,
+      "d": 94.86,
       "lpg": 920,
       "cng": 80.5,
       "la": 9.59,
@@ -107,8 +107,8 @@ const FUEL_DATA = {
     {
       "name": "Palakkad",
       "state": "Kerala",
-      "p": 106.94,
-      "d": 95.85,
+      "p": 106.89,
+      "d": 95.8,
       "lpg": 931.5,
       "cng": 90.5,
       "la": 10.78,
@@ -120,8 +120,8 @@ const FUEL_DATA = {
     {
       "name": "Malappuram",
       "state": "Kerala",
-      "p": 106.16,
-      "d": 95.14,
+      "p": 106.28,
+      "d": 95.26,
       "lpg": 921.5,
       "cng": 90.5,
       "la": 11.07,
@@ -159,8 +159,8 @@ const FUEL_DATA = {
     {
       "name": "Kannur",
       "state": "Kerala",
-      "p": 105.89,
-      "d": 94.88,
+      "p": 105.91,
+      "d": 94.9,
       "lpg": 933,
       "cng": 90.5,
       "la": 11.87,
@@ -237,8 +237,8 @@ const FUEL_DATA = {
     {
       "name": "Chennai",
       "state": "Tamil Nadu",
-      "p": 100.9,
-      "d": 92.49,
+      "p": 101.23,
+      "d": 92.81,
       "lpg": 928.5,
       "cng": 91.5,
       "la": 13.08,
@@ -276,7 +276,7 @@ const FUEL_DATA = {
     {
       "name": "Kolkata",
       "state": "West Bengal",
-      "p": 105.41,
+      "p": 105.45,
       "d": 92.02,
       "lpg": 939,
       "cng": 93.5,
@@ -289,7 +289,7 @@ const FUEL_DATA = {
     {
       "name": "Hyderabad",
       "state": "Telangana",
-      "p": 107.46,
+      "p": 107.5,
       "d": 95.7,
       "lpg": 965,
       "cng": 97,
@@ -302,9 +302,9 @@ const FUEL_DATA = {
   ],
   "history": {
     "p": [
-      103.5,
       103.54,
       103.5,
+      103.54,
       103.54,
       103.54,
       103.54,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       90.03
     ],
     "days": [
-      "Sat",
       "Sun",
       "Mon",
       "Tue",
       "Wed",
       "Thu",
-      "Fri"
+      "Fri",
+      "Sat"
     ]
   },
-  "updatedAt": "2026-04-24T04:21:34.364Z"
+  "updatedAt": "2026-04-25T03:56:02.660Z"
 };
