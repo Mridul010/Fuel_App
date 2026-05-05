@@ -35,8 +35,8 @@ const FUEL_DATA = {
       "cng": 77.09,
       "la": 9.26,
       "lo": 76.78,
-      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-pathanamthitta.html",
-      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-pathanamthitta.html",
+      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-pathananthitta.html",
+      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-pathananthitta.html",
       "crude": 24.23
     },
     {
@@ -87,8 +87,8 @@ const FUEL_DATA = {
       "cng": 77.09,
       "la": 9.93,
       "lo": 76.26,
-      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kochi.html",
-      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-kochi.html",
+      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-ernakulam.html",
+      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-ernakulam.html",
       "crude": 24.23
     },
     {
@@ -178,8 +178,8 @@ const FUEL_DATA = {
       "cng": 77.09,
       "la": 12.5,
       "lo": 74.98,
-      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kasargod.html",
-      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-kasargod.html",
+      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kasaragod.html",
+      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-kasaragod.html",
       "crude": 24.23
     },
     {
@@ -204,8 +204,8 @@ const FUEL_DATA = {
       "cng": 77.09,
       "la": 12.87,
       "lo": 74.84,
-      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-mangalore.html",
-      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-mangalore.html",
+      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-dakshina-kannada.html",
+      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-dakshina-kannada.html",
       "crude": 24.23
     },
     {
@@ -230,8 +230,8 @@ const FUEL_DATA = {
       "cng": 77.09,
       "la": 12.97,
       "lo": 77.59,
-      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-bengaluru.html",
-      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-bengaluru.html",
+      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-bangalore.html",
+      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-bangalore.html",
       "crude": 24.23
     },
     {

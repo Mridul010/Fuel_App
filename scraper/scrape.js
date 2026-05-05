@@ -6,7 +6,7 @@ const path = require('path');
 const JS_PATH = path.join(__dirname, '../data/prices.js');
 
 async function getHtml(browser, url) {
-    if (!url) return null;
+    if (!url) return { html: null, finalUrl: url };
     try {
         const page = await browser.newPage();
         await page.setRequestInterception(true);
@@ -19,12 +19,21 @@ async function getHtml(browser, url) {
         });
         
         await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+        const finalUrl = page.url();
         const html = await page.content();
         await page.close();
-        return html;
+        
+        // Detect redirect: if the final URL doesn't contain "price-in-", we got redirected
+        // to the generic page (e.g. petrol-price.html) and should NOT use this data
+        if (url.includes('price-in-') && !finalUrl.includes('price-in-')) {
+            console.log(`  ⚠ REDIRECT DETECTED: ${url} → ${finalUrl} (SKIPPING)`);
+            return { html: null, finalUrl };
+        }
+        
+        return { html, finalUrl };
     } catch (e) {
         console.error("Puppeteer Failed for", url, e.message);
-        return null;
+        return { html: null, finalUrl: url };
     }
 }
 
@@ -74,7 +83,7 @@ function getCityKeywords(cityName, url) {
  * we get the CITY-SPECIFIC price and not a comparison/reference price.
  */
 async function scrapePrice(browser, url, cityName, cityKeywords, min=50, max=2000) {
-    const html = await getHtml(browser, url);
+    const { html } = await getHtml(browser, url);
     if(!html) return null;
     
     const $ = cheerio.load(html);
@@ -250,7 +259,7 @@ async function run() {
 
     console.log('Extracting Global Crude...');
     let globalCrude = 89.50;
-    const mainHtml = await getHtml(browser, 'https://www.goodreturns.in/petrol-price.html');
+    const { html: mainHtml } = await getHtml(browser, 'https://www.goodreturns.in/petrol-price.html');
     if (mainHtml) {
         const crMatch = mainHtml.match(/Crude.*?([\d,]{2,}\.?\d*)/i);
         if (crMatch) {
@@ -265,8 +274,8 @@ async function run() {
     }
 
     console.log('Scraping State Maps...');
-    const lpgHtml = await getHtml(browser, 'https://www.goodreturns.in/lpg-price.html');
-    const cngHtml = await getHtml(browser, 'https://www.goodreturns.in/cng-price.html');
+    const { html: lpgHtml } = await getHtml(browser, 'https://www.goodreturns.in/lpg-price.html');
+    const { html: cngHtml } = await getHtml(browser, 'https://www.goodreturns.in/cng-price.html');
     const lpgMap = await scrapeStateMap(lpgHtml);
     const cngMap = await scrapeStateMap(cngHtml);
 
