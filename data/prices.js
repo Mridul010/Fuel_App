@@ -320,14 +320,14 @@ const FUEL_DATA = {
       90.03
     ],
     "days": [
-      "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
       "Mon",
+      "Tue",
       "Tue"
     ]
   },
-  "updatedAt": "2026-05-05T04:20:54.221Z"
+  "updatedAt": "2026-05-05T15:22:25.865Z"
 };
