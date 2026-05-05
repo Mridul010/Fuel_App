@@ -3,10 +3,10 @@ const FUEL_DATA = {
     {
       "name": "Thiruvananthapuram",
       "state": "Kerala",
-      "p": 103.54,
-      "d": 90.03,
+      "p": 107.48,
+      "d": 96.48,
       "lpg": 922,
-      "cng": 81,
+      "cng": 77.09,
       "la": 8.52,
       "lo": 76.93,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-thiruvananthapuram.html",
@@ -32,7 +32,7 @@ const FUEL_DATA = {
       "p": 103.54,
       "d": 90.03,
       "lpg": 913,
-      "cng": 81,
+      "cng": 77.09,
       "la": 9.26,
       "lo": 76.78,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-pathanamthitta.html",
@@ -58,7 +58,7 @@ const FUEL_DATA = {
       "p": 105.78,
       "d": 94.76,
       "lpg": 920,
-      "cng": 81,
+      "cng": 77.09,
       "la": 9.59,
       "lo": 76.52,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kottayam.html",
@@ -71,7 +71,7 @@ const FUEL_DATA = {
       "p": 105.91,
       "d": 94.87,
       "lpg": 920,
-      "cng": 81,
+      "cng": 77.09,
       "la": 9.85,
       "lo": 76.94,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-idukki.html",
@@ -84,7 +84,7 @@ const FUEL_DATA = {
       "p": 103.54,
       "d": 90.03,
       "lpg": 913,
-      "cng": 81,
+      "cng": 77.09,
       "la": 9.93,
       "lo": 76.26,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kochi.html",
@@ -173,9 +173,9 @@ const FUEL_DATA = {
       "name": "Kasaragod",
       "state": "Kerala",
       "p": 103.54,
-      "d": 90.03,
+      "d": 87.67,
       "lpg": 913,
-      "cng": 81,
+      "cng": 77.09,
       "la": 12.5,
       "lo": 74.98,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kasargod.html",
@@ -187,7 +187,7 @@ const FUEL_DATA = {
       "state": "Puducherry",
       "p": 93.93,
       "d": 83.91,
-      "lpg": 862.5,
+      "lpg": 802.5,
       "cng": 90.5,
       "la": 11.7,
       "lo": 75.53,
@@ -201,7 +201,7 @@ const FUEL_DATA = {
       "p": 103.54,
       "d": 90.03,
       "lpg": 913,
-      "cng": 81,
+      "cng": 77.09,
       "la": 12.87,
       "lo": 74.84,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-mangalore.html",
@@ -227,7 +227,7 @@ const FUEL_DATA = {
       "p": 103.54,
       "d": 90.03,
       "lpg": 913,
-      "cng": 81,
+      "cng": 77.09,
       "la": 12.97,
       "lo": 77.59,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-bengaluru.html",
@@ -308,7 +308,7 @@ const FUEL_DATA = {
       103.54,
       103.54,
       103.54,
-      103.54
+      107.48
     ],
     "d": [
       90.03,
@@ -317,17 +317,17 @@ const FUEL_DATA = {
       90.03,
       90.03,
       90.03,
-      90.03
+      96.48
     ],
     "days": [
-      "Thu",
       "Fri",
       "Sat",
       "Sun",
       "Mon",
       "Tue",
+      "Tue",
       "Tue"
     ]
   },
-  "updatedAt": "2026-05-05T15:22:25.865Z"
+  "updatedAt": "2026-05-05T15:40:30.586Z"
 };
