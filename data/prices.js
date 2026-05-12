@@ -29,8 +29,8 @@ const FUEL_DATA = {
     {
       "name": "Pathanamthitta",
       "state": "Kerala",
-      "p": 106.46,
-      "d": 95.39,
+      "p": 106.63,
+      "d": 95.55,
       "lpg": 925,
       "cng": 77.09,
       "la": 9.26,
@@ -42,8 +42,8 @@ const FUEL_DATA = {
     {
       "name": "Alappuzha",
       "state": "Kerala",
-      "p": 106.48,
-      "d": 95.41,
+      "p": 106.51,
+      "d": 95.44,
       "lpg": 920,
       "cng": 90,
       "la": 9.49,
@@ -55,8 +55,8 @@ const FUEL_DATA = {
     {
       "name": "Kottayam",
       "state": "Kerala",
-      "p": 106.14,
-      "d": 95.09,
+      "p": 105.71,
+      "d": 94.69,
       "lpg": 920,
       "cng": 77.09,
       "la": 9.59,
@@ -94,8 +94,8 @@ const FUEL_DATA = {
     {
       "name": "Thrissur",
       "state": "Kerala",
-      "p": 105.83,
-      "d": 94.82,
+      "p": 106.09,
+      "d": 95.05,
       "lpg": 925,
       "cng": 90.5,
       "la": 10.52,
@@ -107,8 +107,8 @@ const FUEL_DATA = {
     {
       "name": "Palakkad",
       "state": "Kerala",
-      "p": 107.15,
-      "d": 96.04,
+      "p": 106.57,
+      "d": 95.5,
       "lpg": 931.5,
       "cng": 90.5,
       "la": 10.78,
@@ -120,8 +120,8 @@ const FUEL_DATA = {
     {
       "name": "Malappuram",
       "state": "Kerala",
-      "p": 106.16,
-      "d": 95.14,
+      "p": 106.5,
+      "d": 95.44,
       "lpg": 921.5,
       "cng": 90.5,
       "la": 11.07,
@@ -211,8 +211,8 @@ const FUEL_DATA = {
     {
       "name": "Coimbatore",
       "state": "Tamil Nadu",
-      "p": 101.29,
-      "d": 92.89,
+      "p": 101.38,
+      "d": 92.97,
       "lpg": 942,
       "cng": 88.49,
       "la": 11.01,
@@ -237,8 +237,8 @@ const FUEL_DATA = {
     {
       "name": "Chennai",
       "state": "Tamil Nadu",
-      "p": 100.85,
-      "d": 92.4,
+      "p": 100.8,
+      "d": 92.39,
       "lpg": 928.5,
       "cng": 91.5,
       "la": 13.08,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Tue",
       "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
-      "Mon"
+      "Mon",
+      "Tue"
     ]
   },
-  "updatedAt": "2026-05-11T05:02:51.724Z"
+  "updatedAt": "2026-05-12T04:42:27.412Z"
 };
