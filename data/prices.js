@@ -16,8 +16,8 @@ const FUEL_DATA = {
     {
       "name": "Kollam",
       "state": "Kerala",
-      "p": 107.1,
-      "d": 96,
+      "p": 110.19,
+      "d": 98.98,
       "lpg": 922,
       "cng": 90,
       "la": 8.89,
@@ -29,8 +29,8 @@ const FUEL_DATA = {
     {
       "name": "Pathanamthitta",
       "state": "Kerala",
-      "p": 106.63,
-      "d": 95.55,
+      "p": 109.52,
+      "d": 98.36,
       "lpg": 925,
       "cng": 77.09,
       "la": 9.26,
@@ -42,8 +42,8 @@ const FUEL_DATA = {
     {
       "name": "Alappuzha",
       "state": "Kerala",
-      "p": 106.56,
-      "d": 95.49,
+      "p": 109.74,
+      "d": 98.57,
       "lpg": 920,
       "cng": 90,
       "la": 9.49,
@@ -55,8 +55,8 @@ const FUEL_DATA = {
     {
       "name": "Kottayam",
       "state": "Kerala",
-      "p": 105.84,
-      "d": 94.8,
+      "p": 109.06,
+      "d": 97.92,
       "lpg": 920,
       "cng": 77.09,
       "la": 9.59,
@@ -68,8 +68,8 @@ const FUEL_DATA = {
     {
       "name": "Idukki",
       "state": "Kerala",
-      "p": 105.93,
-      "d": 94.9,
+      "p": 109.18,
+      "d": 98.04,
       "lpg": 920,
       "cng": 77.09,
       "la": 9.85,
@@ -81,8 +81,8 @@ const FUEL_DATA = {
     {
       "name": "Ernakulam (Kochi)",
       "state": "Kerala",
-      "p": 105.49,
-      "d": 94.48,
+      "p": 108.93,
+      "d": 97.8,
       "lpg": 920,
       "cng": 90.5,
       "la": 9.93,
@@ -94,8 +94,8 @@ const FUEL_DATA = {
     {
       "name": "Thrissur",
       "state": "Kerala",
-      "p": 105.89,
-      "d": 94.87,
+      "p": 109.16,
+      "d": 98.03,
       "lpg": 925,
       "cng": 90.5,
       "la": 10.52,
@@ -107,8 +107,8 @@ const FUEL_DATA = {
     {
       "name": "Palakkad",
       "state": "Kerala",
-      "p": 106.95,
-      "d": 95.86,
+      "p": 109.91,
+      "d": 98.73,
       "lpg": 931.5,
       "cng": 90.5,
       "la": 10.78,
@@ -120,8 +120,8 @@ const FUEL_DATA = {
     {
       "name": "Malappuram",
       "state": "Kerala",
-      "p": 106.23,
-      "d": 95.21,
+      "p": 109.55,
+      "d": 98.42,
       "lpg": 921.5,
       "cng": 90.5,
       "la": 11.07,
@@ -133,8 +133,8 @@ const FUEL_DATA = {
     {
       "name": "Kozhikode",
       "state": "Kerala",
-      "p": 105.83,
-      "d": 94.84,
+      "p": 109.37,
+      "d": 98.23,
       "lpg": 921.5,
       "cng": 90.5,
       "la": 11.25,
@@ -185,8 +185,8 @@ const FUEL_DATA = {
     {
       "name": "Mahe",
       "state": "Puducherry",
-      "p": 93.93,
-      "d": 83.91,
+      "p": 96.89,
+      "d": 86.78,
       "lpg": 802.5,
       "cng": 90.5,
       "la": 11.7,
@@ -198,8 +198,8 @@ const FUEL_DATA = {
     {
       "name": "Mangaluru",
       "state": "Karnataka",
-      "p": 102.31,
-      "d": 90.39,
+      "p": 105.4,
+      "d": 93.35,
       "lpg": 920.5,
       "cng": 88,
       "la": 12.87,
@@ -211,8 +211,8 @@ const FUEL_DATA = {
     {
       "name": "Coimbatore",
       "state": "Tamil Nadu",
-      "p": 101.61,
-      "d": 93.2,
+      "p": 104.13,
+      "d": 95.75,
       "lpg": 942,
       "cng": 88.49,
       "la": 11.01,
@@ -224,8 +224,8 @@ const FUEL_DATA = {
     {
       "name": "Bengaluru",
       "state": "Karnataka",
-      "p": 102.96,
-      "d": 90.99,
+      "p": 106.21,
+      "d": 94.1,
       "lpg": 915.5,
       "cng": 90,
       "la": 12.97,
@@ -237,8 +237,8 @@ const FUEL_DATA = {
     {
       "name": "Chennai",
       "state": "Tamil Nadu",
-      "p": 100.8,
-      "d": 92.39,
+      "p": 103.67,
+      "d": 95.25,
       "lpg": 928.5,
       "cng": 91.5,
       "la": 13.08,
@@ -250,8 +250,8 @@ const FUEL_DATA = {
     {
       "name": "Delhi",
       "state": "Delhi",
-      "p": 94.77,
-      "d": 87.67,
+      "p": 97.77,
+      "d": 90.67,
       "lpg": 913,
       "cng": 77.09,
       "la": 28.61,
@@ -263,8 +263,8 @@ const FUEL_DATA = {
     {
       "name": "Mumbai",
       "state": "Maharashtra",
-      "p": 103.54,
-      "d": 90.03,
+      "p": 106.68,
+      "d": 93.14,
       "lpg": 912.5,
       "cng": 81,
       "la": 19.07,
@@ -276,8 +276,8 @@ const FUEL_DATA = {
     {
       "name": "Kolkata",
       "state": "West Bengal",
-      "p": 105.45,
-      "d": 92.02,
+      "p": 108.7,
+      "d": 95.13,
       "lpg": 939,
       "cng": 93.5,
       "la": 22.57,
@@ -289,8 +289,8 @@ const FUEL_DATA = {
     {
       "name": "Hyderabad",
       "state": "Telangana",
-      "p": 107.5,
-      "d": 95.7,
+      "p": 110.89,
+      "d": 98.96,
       "lpg": 965,
       "cng": 97,
       "la": 17.38,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Fri",
       "Sat",
       "Sun",
       "Mon",
       "Tue",
       "Wed",
-      "Thu"
+      "Thu",
+      "Fri"
     ]
   },
-  "updatedAt": "2026-05-14T04:52:39.736Z"
+  "updatedAt": "2026-05-15T04:56:22.530Z"
 };
