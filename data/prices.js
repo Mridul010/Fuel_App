@@ -16,8 +16,8 @@ const FUEL_DATA = {
     {
       "name": "Kollam",
       "state": "Kerala",
-      "p": 114.8,
-      "d": 103.64,
+      "p": 114.52,
+      "d": 103.38,
       "lpg": 922,
       "cng": 96.5,
       "la": 8.89,
@@ -29,8 +29,8 @@ const FUEL_DATA = {
     {
       "name": "Pathanamthitta",
       "state": "Kerala",
-      "p": 114.36,
-      "d": 103.23,
+      "p": 114.27,
+      "d": 103.15,
       "lpg": 925,
       "cng": 77.09,
       "la": 9.26,
@@ -55,8 +55,8 @@ const FUEL_DATA = {
     {
       "name": "Kottayam",
       "state": "Kerala",
-      "p": 114.52,
-      "d": 103.38,
+      "p": 114.31,
+      "d": 103.18,
       "lpg": 920,
       "cng": 77.09,
       "la": 9.59,
@@ -81,8 +81,8 @@ const FUEL_DATA = {
     {
       "name": "Ernakulam (Kochi)",
       "state": "Kerala",
-      "p": 113.79,
-      "d": 102.69,
+      "p": 113.5,
+      "d": 102.42,
       "lpg": 920,
       "cng": 90.5,
       "la": 9.93,
@@ -94,8 +94,8 @@ const FUEL_DATA = {
     {
       "name": "Thrissur",
       "state": "Kerala",
-      "p": 114.58,
-      "d": 103.44,
+      "p": 114.41,
+      "d": 103.28,
       "lpg": 925,
       "cng": 90.5,
       "la": 10.52,
@@ -107,8 +107,8 @@ const FUEL_DATA = {
     {
       "name": "Palakkad",
       "state": "Kerala",
-      "p": 115.18,
-      "d": 103.99,
+      "p": 114.57,
+      "d": 103.43,
       "lpg": 931.5,
       "cng": 90.5,
       "la": 10.78,
@@ -120,8 +120,8 @@ const FUEL_DATA = {
     {
       "name": "Malappuram",
       "state": "Kerala",
-      "p": 114.29,
-      "d": 103.46,
+      "p": 114.17,
+      "d": 103.07,
       "lpg": 921.5,
       "cng": 90.5,
       "la": 11.07,
@@ -133,8 +133,8 @@ const FUEL_DATA = {
     {
       "name": "Kozhikode",
       "state": "Kerala",
-      "p": 114.17,
-      "d": 103.07,
+      "p": 113.83,
+      "d": 102.77,
       "lpg": 921.5,
       "cng": 90.5,
       "la": 11.25,
@@ -159,8 +159,8 @@ const FUEL_DATA = {
     {
       "name": "Kannur",
       "state": "Kerala",
-      "p": 114.05,
-      "d": 102.96,
+      "p": 113.89,
+      "d": 102.81,
       "lpg": 933,
       "cng": 90.5,
       "la": 11.87,
@@ -198,8 +198,8 @@ const FUEL_DATA = {
     {
       "name": "Mangaluru",
       "state": "Karnataka",
-      "p": 110.11,
-      "d": 98.05,
+      "p": 110.35,
+      "d": 98.26,
       "lpg": 920.5,
       "cng": 92,
       "la": 12.87,
@@ -211,10 +211,10 @@ const FUEL_DATA = {
     {
       "name": "Coimbatore",
       "state": "Tamil Nadu",
-      "p": 108.23,
-      "d": 100.06,
+      "p": 108.55,
+      "d": 100.37,
       "lpg": 942,
-      "cng": 74.36,
+      "cng": 88.5,
       "la": 11.01,
       "lo": 76.97,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-coimbatore.html",
@@ -237,8 +237,8 @@ const FUEL_DATA = {
     {
       "name": "Chennai",
       "state": "Tamil Nadu",
-      "p": 107.87,
-      "d": 99.66,
+      "p": 108.2,
+      "d": 99.98,
       "lpg": 928.5,
       "cng": 95,
       "la": 13.08,
@@ -253,7 +253,7 @@ const FUEL_DATA = {
       "p": 102.12,
       "d": 95.2,
       "lpg": 913,
-      "cng": 77.09,
+      "cng": 83.09,
       "la": 28.61,
       "lo": 77.2,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-new-delhi.html",
@@ -266,7 +266,7 @@ const FUEL_DATA = {
       "p": 111.21,
       "d": 97.83,
       "lpg": 912.5,
-      "cng": 81,
+      "cng": 84,
       "la": 19.07,
       "lo": 72.87,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-mumbai.html",
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
       "Mon",
-      "Tue"
+      "Tue",
+      "Wed"
     ]
   },
-  "updatedAt": "2026-05-26T05:08:51.476Z"
+  "updatedAt": "2026-05-27T05:23:02.856Z"
 };
