@@ -174,7 +174,7 @@ const FUEL_DATA = {
       "state": "Kerala",
       "p": 114.53,
       "d": 103.41,
-      "lpg": 962,
+      "lpg": 933,
       "cng": 98.25,
       "la": 12.5,
       "lo": 74.98,
@@ -201,7 +201,7 @@ const FUEL_DATA = {
       "p": 110.06,
       "d": 98,
       "lpg": 949.5,
-      "cng": 92,
+      "cng": 95,
       "la": 12.87,
       "lo": 74.84,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-dakshina-kannada.html",
@@ -227,7 +227,7 @@ const FUEL_DATA = {
       "p": 110.89,
       "d": 98.8,
       "lpg": 944.5,
-      "cng": 95,
+      "cng": 97,
       "la": 12.97,
       "lo": 77.59,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-bangalore.html",
@@ -240,7 +240,7 @@ const FUEL_DATA = {
       "p": 107.87,
       "d": 99.66,
       "lpg": 957.5,
-      "cng": 96,
+      "cng": 97,
       "la": 13.08,
       "lo": 80.27,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-chennai.html",
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Mon",
       "Tue",
       "Wed",
       "Thu",
       "Fri",
       "Sat",
-      "Sun"
+      "Sun",
+      "Mon"
     ]
   },
-  "updatedAt": "2026-06-14T05:57:44.051Z"
+  "updatedAt": "2026-06-15T06:32:47.009Z"
 };
