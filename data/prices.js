@@ -174,7 +174,7 @@ const FUEL_DATA = {
       "state": "Kerala",
       "p": 114.53,
       "d": 103.41,
-      "lpg": 933,
+      "lpg": 962,
       "cng": 98.25,
       "la": 12.5,
       "lo": 74.98,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Tue",
       "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
-      "Mon"
+      "Mon",
+      "Tue"
     ]
   },
-  "updatedAt": "2026-06-15T06:32:47.009Z"
+  "updatedAt": "2026-06-16T06:38:33.976Z"
 };
