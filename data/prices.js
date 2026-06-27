@@ -29,8 +29,8 @@ const FUEL_DATA = {
     {
       "name": "Pathanamthitta",
       "state": "Kerala",
-      "p": 114.88,
-      "d": 103.72,
+      "p": 114.52,
+      "d": 103.38,
       "lpg": 954,
       "cng": 77.09,
       "la": 9.26,
@@ -185,8 +185,8 @@ const FUEL_DATA = {
     {
       "name": "Mahe",
       "state": "Puducherry",
-      "p": 103.58,
-      "d": 93.79,
+      "p": 101.18,
+      "d": 91.11,
       "lpg": 802.5,
       "cng": 90.5,
       "la": 11.7,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Sat",
       "Sun",
       "Mon",
       "Tue",
       "Wed",
       "Thu",
-      "Fri"
+      "Fri",
+      "Sat"
     ]
   },
-  "updatedAt": "2026-06-26T05:15:17.089Z"
+  "updatedAt": "2026-06-27T04:58:24.367Z"
 };
