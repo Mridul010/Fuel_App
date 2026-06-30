@@ -94,8 +94,8 @@ const FUEL_DATA = {
     {
       "name": "Thrissur",
       "state": "Kerala",
-      "p": 114.62,
-      "d": 103.48,
+      "p": 114.46,
+      "d": 103.33,
       "lpg": 954,
       "cng": 99.5,
       "la": 10.52,
@@ -109,7 +109,7 @@ const FUEL_DATA = {
       "state": "Kerala",
       "p": 114.55,
       "d": 103.41,
-      "lpg": 960.5,
+      "lpg": 957.5,
       "cng": 99.5,
       "la": 10.78,
       "lo": 76.65,
@@ -146,8 +146,8 @@ const FUEL_DATA = {
     {
       "name": "Wayanad",
       "state": "Kerala",
-      "p": 114.91,
-      "d": 103.7,
+      "p": 115.24,
+      "d": 104.01,
       "lpg": 955.5,
       "cng": 99.5,
       "la": 11.68,
@@ -198,8 +198,8 @@ const FUEL_DATA = {
     {
       "name": "Mangaluru",
       "state": "Karnataka",
-      "p": 110.1,
-      "d": 98.03,
+      "p": 110.15,
+      "d": 98.08,
       "lpg": 949.5,
       "cng": 95,
       "la": 12.87,
@@ -224,8 +224,8 @@ const FUEL_DATA = {
     {
       "name": "Bengaluru",
       "state": "Karnataka",
-      "p": 111.68,
-      "d": 99.56,
+      "p": 110.93,
+      "d": 98.8,
       "lpg": 944.5,
       "cng": 97,
       "la": 12.97,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Tue",
       "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
-      "Mon"
+      "Mon",
+      "Tue"
     ]
   },
-  "updatedAt": "2026-06-29T05:57:27.750Z"
+  "updatedAt": "2026-06-30T05:11:43.142Z"
 };
