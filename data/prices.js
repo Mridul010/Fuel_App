@@ -42,8 +42,8 @@ const FUEL_DATA = {
     {
       "name": "Alappuzha",
       "state": "Kerala",
-      "p": 114.19,
-      "d": 103.08,
+      "p": 114.01,
+      "d": 102.9,
       "lpg": 949,
       "cng": 96.5,
       "la": 9.49,
@@ -55,8 +55,8 @@ const FUEL_DATA = {
     {
       "name": "Kottayam",
       "state": "Kerala",
-      "p": 114,
-      "d": 102.88,
+      "p": 108.6,
+      "d": 100.43,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.59,
@@ -68,8 +68,8 @@ const FUEL_DATA = {
     {
       "name": "Idukki",
       "state": "Kerala",
-      "p": 115.19,
-      "d": 103.97,
+      "p": 115.06,
+      "d": 103.88,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.85,
@@ -109,7 +109,7 @@ const FUEL_DATA = {
       "state": "Kerala",
       "p": 114.55,
       "d": 103.41,
-      "lpg": 957.5,
+      "lpg": 960.5,
       "cng": 99.5,
       "la": 10.78,
       "lo": 76.65,
@@ -146,8 +146,8 @@ const FUEL_DATA = {
     {
       "name": "Wayanad",
       "state": "Kerala",
-      "p": 115.24,
-      "d": 104.01,
+      "p": 114.93,
+      "d": 103.71,
       "lpg": 955.5,
       "cng": 99.5,
       "la": 11.68,
@@ -188,7 +188,7 @@ const FUEL_DATA = {
       "p": 101.18,
       "d": 91.11,
       "lpg": 802.5,
-      "cng": 90.5,
+      "cng": 99.5,
       "la": 11.7,
       "lo": 75.53,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-mahe.html",
@@ -198,8 +198,8 @@ const FUEL_DATA = {
     {
       "name": "Mangaluru",
       "state": "Karnataka",
-      "p": 110.15,
-      "d": 98.08,
+      "p": 110.1,
+      "d": 98.03,
       "lpg": 949.5,
       "cng": 95,
       "la": 12.87,
@@ -211,8 +211,8 @@ const FUEL_DATA = {
     {
       "name": "Coimbatore",
       "state": "Tamil Nadu",
-      "p": 108.63,
-      "d": 100.45,
+      "p": 108.45,
+      "d": 100.27,
       "lpg": 971,
       "cng": 88.5,
       "la": 11.01,
@@ -224,8 +224,8 @@ const FUEL_DATA = {
     {
       "name": "Bengaluru",
       "state": "Karnataka",
-      "p": 110.93,
-      "d": 98.8,
+      "p": 111.68,
+      "d": 99.56,
       "lpg": 944.5,
       "cng": 97,
       "la": 12.97,
@@ -279,7 +279,7 @@ const FUEL_DATA = {
       "p": 113.51,
       "d": 99.82,
       "lpg": 968,
-      "cng": 93.5,
+      "cng": 99.5,
       "la": 22.57,
       "lo": 88.36,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kolkata.html",
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
       "Mon",
-      "Tue"
+      "Tue",
+      "Wed"
     ]
   },
-  "updatedAt": "2026-06-30T05:11:43.142Z"
+  "updatedAt": "2026-07-01T05:29:04.457Z"
 };
