@@ -42,8 +42,8 @@ const FUEL_DATA = {
     {
       "name": "Alappuzha",
       "state": "Kerala",
-      "p": 114.01,
-      "d": 102.9,
+      "p": 113.88,
+      "d": 102.78,
       "lpg": 949,
       "cng": 96.5,
       "la": 9.49,
@@ -68,8 +68,8 @@ const FUEL_DATA = {
     {
       "name": "Idukki",
       "state": "Kerala",
-      "p": 115.06,
-      "d": 103.88,
+      "p": 114.87,
+      "d": 103.7,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.85,
@@ -146,8 +146,8 @@ const FUEL_DATA = {
     {
       "name": "Wayanad",
       "state": "Kerala",
-      "p": 114.93,
-      "d": 103.72,
+      "p": 115.26,
+      "d": 104.02,
       "lpg": 955.5,
       "cng": 99.5,
       "la": 11.68,
@@ -159,8 +159,8 @@ const FUEL_DATA = {
     {
       "name": "Kannur",
       "state": "Kerala",
-      "p": 113.79,
-      "d": 102.71,
+      "p": 114.48,
+      "d": 103.36,
       "lpg": 962,
       "cng": 99.5,
       "la": 11.87,
@@ -172,8 +172,8 @@ const FUEL_DATA = {
     {
       "name": "Kasaragod",
       "state": "Kerala",
-      "p": 114.74,
-      "d": 103.61,
+      "p": 114.48,
+      "d": 103.36,
       "lpg": 962,
       "cng": 99.5,
       "la": 12.5,
@@ -185,8 +185,8 @@ const FUEL_DATA = {
     {
       "name": "Mahe",
       "state": "Puducherry",
-      "p": 101.18,
-      "d": 91.11,
+      "p": 103.58,
+      "d": 93.79,
       "lpg": 802.5,
       "cng": 99.5,
       "la": 11.7,
@@ -198,8 +198,8 @@ const FUEL_DATA = {
     {
       "name": "Mangaluru",
       "state": "Karnataka",
-      "p": 110.15,
-      "d": 98.08,
+      "p": 110.1,
+      "d": 98.03,
       "lpg": 949.5,
       "cng": 95,
       "la": 12.87,
@@ -211,8 +211,8 @@ const FUEL_DATA = {
     {
       "name": "Coimbatore",
       "state": "Tamil Nadu",
-      "p": 108.67,
-      "d": 100.48,
+      "p": 108.63,
+      "d": 100.45,
       "lpg": 971,
       "cng": 88.5,
       "la": 11.01,
@@ -224,8 +224,8 @@ const FUEL_DATA = {
     {
       "name": "Bengaluru",
       "state": "Karnataka",
-      "p": 111.68,
-      "d": 99.56,
+      "p": 110.93,
+      "d": 98.8,
       "lpg": 944.5,
       "cng": 97,
       "la": 12.97,
@@ -237,7 +237,7 @@ const FUEL_DATA = {
     {
       "name": "Chennai",
       "state": "Tamil Nadu",
-      "p": 107.77,
+      "p": 107.76,
       "d": 99.55,
       "lpg": 957.5,
       "cng": 97,
@@ -292,7 +292,7 @@ const FUEL_DATA = {
       "p": 115.69,
       "d": 103.82,
       "lpg": 994,
-      "cng": 97,
+      "cng": 109,
       "la": 17.38,
       "lo": 78.47,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-hyderabad.html",
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Fri",
       "Sat",
       "Sun",
       "Mon",
       "Tue",
       "Wed",
-      "Thu"
+      "Thu",
+      "Fri"
     ]
   },
-  "updatedAt": "2026-07-02T05:05:15.226Z"
+  "updatedAt": "2026-07-03T04:49:11.068Z"
 };
