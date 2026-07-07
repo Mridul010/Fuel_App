@@ -29,8 +29,8 @@ const FUEL_DATA = {
     {
       "name": "Pathanamthitta",
       "state": "Kerala",
-      "p": 114.52,
-      "d": 103.38,
+      "p": 114.88,
+      "d": 103.72,
       "lpg": 954,
       "cng": 77.09,
       "la": 9.26,
@@ -42,8 +42,8 @@ const FUEL_DATA = {
     {
       "name": "Alappuzha",
       "state": "Kerala",
-      "p": 113.88,
-      "d": 102.78,
+      "p": 114.19,
+      "d": 103.08,
       "lpg": 949,
       "cng": 96.5,
       "la": 9.49,
@@ -55,8 +55,8 @@ const FUEL_DATA = {
     {
       "name": "Kottayam",
       "state": "Kerala",
-      "p": 113.88,
-      "d": 102.78,
+      "p": 114,
+      "d": 102.88,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.59,
@@ -68,8 +68,8 @@ const FUEL_DATA = {
     {
       "name": "Idukki",
       "state": "Kerala",
-      "p": 114.52,
-      "d": 103.38,
+      "p": 114.87,
+      "d": 103.7,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.85,
@@ -94,8 +94,8 @@ const FUEL_DATA = {
     {
       "name": "Thrissur",
       "state": "Kerala",
-      "p": 114.46,
-      "d": 103.33,
+      "p": 114.62,
+      "d": 103.48,
       "lpg": 954,
       "cng": 99.5,
       "la": 10.52,
@@ -107,8 +107,8 @@ const FUEL_DATA = {
     {
       "name": "Palakkad",
       "state": "Kerala",
-      "p": 114.78,
-      "d": 103.63,
+      "p": 114.89,
+      "d": 103.72,
       "lpg": 960.5,
       "cng": 99.5,
       "la": 10.78,
@@ -120,7 +120,7 @@ const FUEL_DATA = {
     {
       "name": "Malappuram",
       "state": "Kerala",
-      "p": 114.04,
+      "p": 113.93,
       "d": 102.95,
       "lpg": 950.5,
       "cng": 99.5,
@@ -147,7 +147,7 @@ const FUEL_DATA = {
       "name": "Wayanad",
       "state": "Kerala",
       "p": 114.93,
-      "d": 103.71,
+      "d": 103.64,
       "lpg": 955.5,
       "cng": 99.5,
       "la": 11.68,
@@ -172,8 +172,8 @@ const FUEL_DATA = {
     {
       "name": "Kasaragod",
       "state": "Kerala",
-      "p": 114.4,
-      "d": 103.29,
+      "p": 114.48,
+      "d": 103.36,
       "lpg": 962,
       "cng": 99.5,
       "la": 12.5,
@@ -224,8 +224,8 @@ const FUEL_DATA = {
     {
       "name": "Bengaluru",
       "state": "Karnataka",
-      "p": 111.68,
-      "d": 99.56,
+      "p": 110.82,
+      "d": 98.77,
       "lpg": 944.5,
       "cng": 97,
       "la": 12.97,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Tue",
       "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
-      "Mon"
+      "Mon",
+      "Tue"
     ]
   },
-  "updatedAt": "2026-07-06T05:18:55.048Z"
+  "updatedAt": "2026-07-07T04:59:33.230Z"
 };
