@@ -16,8 +16,8 @@ const FUEL_DATA = {
     {
       "name": "Kollam",
       "state": "Kerala",
-      "p": 113.5,
-      "d": 102.42,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 951,
       "cng": 96.5,
       "la": 8.89,
@@ -29,8 +29,8 @@ const FUEL_DATA = {
     {
       "name": "Pathanamthitta",
       "state": "Kerala",
-      "p": 114.87,
-      "d": 103.7,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 954,
       "cng": 77.09,
       "la": 9.26,
@@ -42,8 +42,8 @@ const FUEL_DATA = {
     {
       "name": "Alappuzha",
       "state": "Kerala",
-      "p": 113.5,
-      "d": 102.42,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 949,
       "cng": 96.5,
       "la": 9.49,
@@ -55,8 +55,8 @@ const FUEL_DATA = {
     {
       "name": "Kottayam",
       "state": "Kerala",
-      "p": 113.5,
-      "d": 102.42,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.59,
@@ -68,8 +68,8 @@ const FUEL_DATA = {
     {
       "name": "Idukki",
       "state": "Kerala",
-      "p": 114.87,
-      "d": 103.7,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.85,
@@ -81,8 +81,8 @@ const FUEL_DATA = {
     {
       "name": "Ernakulam (Kochi)",
       "state": "Kerala",
-      "p": 113.5,
-      "d": 102.42,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 949,
       "cng": 101,
       "la": 9.93,
@@ -94,8 +94,8 @@ const FUEL_DATA = {
     {
       "name": "Thrissur",
       "state": "Kerala",
-      "p": 114.78,
-      "d": 103.63,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 954,
       "cng": 101,
       "la": 10.52,
@@ -107,8 +107,8 @@ const FUEL_DATA = {
     {
       "name": "Palakkad",
       "state": "Kerala",
-      "p": 114.78,
-      "d": 103.63,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 960.5,
       "cng": 101,
       "la": 10.78,
@@ -120,8 +120,8 @@ const FUEL_DATA = {
     {
       "name": "Malappuram",
       "state": "Kerala",
-      "p": 114.78,
-      "d": 103.63,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 950.5,
       "cng": 101,
       "la": 11.07,
@@ -133,8 +133,8 @@ const FUEL_DATA = {
     {
       "name": "Kozhikode",
       "state": "Kerala",
-      "p": 113.79,
-      "d": 102.71,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 950.5,
       "cng": 101,
       "la": 11.25,
@@ -146,8 +146,8 @@ const FUEL_DATA = {
     {
       "name": "Wayanad",
       "state": "Kerala",
-      "p": 113.79,
-      "d": 102.71,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 955.5,
       "cng": 101,
       "la": 11.68,
@@ -159,8 +159,8 @@ const FUEL_DATA = {
     {
       "name": "Kannur",
       "state": "Kerala",
-      "p": 113.79,
-      "d": 102.71,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 962,
       "cng": 101,
       "la": 11.87,
@@ -172,8 +172,8 @@ const FUEL_DATA = {
     {
       "name": "Kasaragod",
       "state": "Kerala",
-      "p": 113.79,
-      "d": 102.71,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 962,
       "cng": 101,
       "la": 12.5,
@@ -198,8 +198,8 @@ const FUEL_DATA = {
     {
       "name": "Mangaluru",
       "state": "Karnataka",
-      "p": 110.1,
-      "d": 98.03,
+      "p": 110.56,
+      "d": 98.46,
       "lpg": 949.5,
       "cng": 95,
       "la": 12.87,
@@ -211,8 +211,8 @@ const FUEL_DATA = {
     {
       "name": "Coimbatore",
       "state": "Tamil Nadu",
-      "p": 108.63,
-      "d": 100.45,
+      "p": 108.7,
+      "d": 100.53,
       "lpg": 971,
       "cng": 88.5,
       "la": 11.01,
@@ -276,7 +276,7 @@ const FUEL_DATA = {
     {
       "name": "Kolkata",
       "state": "West Bengal",
-      "p": 113.51,
+      "p": 113.5,
       "d": 99.82,
       "lpg": 968,
       "cng": 99.5,
@@ -289,7 +289,7 @@ const FUEL_DATA = {
     {
       "name": "Hyderabad",
       "state": "Telangana",
-      "p": 115.69,
+      "p": 115.73,
       "d": 103.82,
       "lpg": 994,
       "cng": 109,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Thu",
       "Fri",
       "Sat",
       "Sun",
       "Mon",
       "Tue",
-      "Wed"
+      "Wed",
+      "Thu"
     ]
   },
-  "updatedAt": "2026-07-22T04:23:22.606Z"
+  "updatedAt": "2026-07-23T04:21:40.345Z"
 };
