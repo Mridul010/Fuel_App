@@ -55,8 +55,8 @@ const FUEL_DATA = {
     {
       "name": "Kottayam",
       "state": "Kerala",
-      "p": 108.6,
-      "d": 100.43,
+      "p": 114,
+      "d": 102.88,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.59,
@@ -134,7 +134,7 @@ const FUEL_DATA = {
       "name": "Kozhikode",
       "state": "Kerala",
       "p": 113.79,
-      "d": 103.71,
+      "d": 102.71,
       "lpg": 950.5,
       "cng": 101,
       "la": 11.25,
@@ -146,8 +146,8 @@ const FUEL_DATA = {
     {
       "name": "Wayanad",
       "state": "Kerala",
-      "p": 114.93,
-      "d": 103.71,
+      "p": 114.85,
+      "d": 103.72,
       "lpg": 955.5,
       "cng": 101,
       "la": 11.68,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Tue",
       "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
-      "Mon"
+      "Mon",
+      "Tue"
     ]
   },
-  "updatedAt": "2026-08-17T02:21:02.320Z"
+  "updatedAt": "2026-08-18T02:17:12.467Z"
 };
