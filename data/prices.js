@@ -81,8 +81,8 @@ const FUEL_DATA = {
     {
       "name": "Ernakulam (Kochi)",
       "state": "Kerala",
-      "p": 113.5,
-      "d": 102.42,
+      "p": 113.53,
+      "d": 102.45,
       "lpg": 949,
       "cng": 101,
       "la": 9.93,
@@ -94,8 +94,8 @@ const FUEL_DATA = {
     {
       "name": "Thrissur",
       "state": "Kerala",
-      "p": 114.46,
-      "d": 103.32,
+      "p": 114.62,
+      "d": 103.48,
       "lpg": 954,
       "cng": 101,
       "la": 10.52,
@@ -107,8 +107,8 @@ const FUEL_DATA = {
     {
       "name": "Palakkad",
       "state": "Kerala",
-      "p": 114.89,
-      "d": 103.72,
+      "p": 114.55,
+      "d": 103.41,
       "lpg": 960.5,
       "cng": 101,
       "la": 10.78,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Tue",
       "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
-      "Mon"
+      "Mon",
+      "Tue"
     ]
   },
-  "updatedAt": "2026-08-24T02:24:31.746Z"
+  "updatedAt": "2026-08-25T02:19:36.382Z"
 };
