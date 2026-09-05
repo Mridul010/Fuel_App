@@ -7,16 +7,22 @@ let city = null, ch = null, tab = 'p', cmpCities = [], mfor = 'home', dark = tru
 const THEME_KEY = 'fuelrate_theme';
 let updatedAt = null;
 
-// Per-city history when the scraper recorded it, else the global series
+// Per-city history when the scraper recorded it. The legacy top-level series only
+// ever tracked the first city, so it must not be reused for any other one.
 function seriesFor(c, t) {
-    const perCity = HIST.cities && c && HIST.cities[c.name];
-    const s = (perCity && perCity[t]) || HIST[t];
+    if (!c) return null;
+    const perCity = HIST.cities && HIST.cities[c.name];
+    const s = (perCity && perCity[t]) || (C.length && c.name === C[0].name ? HIST[t] : null);
     return Array.isArray(s) && s.length ? s : null;
 }
 
 function dayLabels(len) {
     const d = Array.isArray(HIST.days) && HIST.days.length ? HIST.days : DEFAULT_DAYS;
     return d.slice(-len);
+}
+
+function todayLabel() {
+    return new Date().toLocaleDateString('en-IN', {weekday: 'short'});
 }
 
 function freshnessText(iso) {
@@ -214,7 +220,8 @@ function getCv(v) { return getComputedStyle(document.documentElement).getPropert
 
 function drawChart(t) {
     tab = t;
-    const data = seriesFor(city, t);
+    // Without recorded history, today's price is the only point we can honestly plot
+    const data = seriesFor(city, t) || (city ? [city[t]] : null);
     if(!data) return;
     const labels = dayLabels(data.length);
     
@@ -269,7 +276,8 @@ function drawChart(t) {
             }
         }
     });
-    document.getElementById('cdays').innerHTML = labels.map(d => `<span>${d}</span>`).join('');
+    const shown = labels.length === 1 ? [todayLabel()] : labels;
+    document.getElementById('cdays').innerHTML = shown.map(d => `<span>${d}</span>`).join('');
 }
 
 window.swTab = function(t, btn) {
