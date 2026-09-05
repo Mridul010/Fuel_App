@@ -1,8 +1,34 @@
 let C = [];
 let HIST = {};
-const DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+const DEFAULT_DAYS = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
 
 let city = null, ch = null, tab = 'p', cmpCities = [], mfor = 'home', dark = true;
+
+const THEME_KEY = 'fuelrate_theme';
+let updatedAt = null;
+
+// Per-city history when the scraper recorded it, else the global series
+function seriesFor(c, t) {
+    const perCity = HIST.cities && c && HIST.cities[c.name];
+    const s = (perCity && perCity[t]) || HIST[t];
+    return Array.isArray(s) && s.length ? s : null;
+}
+
+function dayLabels(len) {
+    const d = Array.isArray(HIST.days) && HIST.days.length ? HIST.days : DEFAULT_DAYS;
+    return d.slice(-len);
+}
+
+function freshnessText(iso) {
+    const at = new Date(iso);
+    if (isNaN(at)) return 'Last updated: unknown';
+    const timeStr = at.toLocaleTimeString('en-IN', {hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata'});
+    const dayOf = x => new Date(x).toLocaleDateString('en-CA', {timeZone: 'Asia/Kolkata'});
+    const days = Math.round((new Date(dayOf(Date.now())) - new Date(dayOf(at))) / 86400000);
+    if (days <= 0) return `Updated today at ${timeStr} IST`;
+    if (days === 1) return `Updated yesterday at ${timeStr} IST`;
+    return `Updated ${at.toLocaleDateString('en-IN', {day: 'numeric', month: 'short', timeZone: 'Asia/Kolkata'})} (${days} days ago)`;
+}
 
 // Initialize icons and data
 async function init() {
@@ -15,37 +41,46 @@ async function init() {
     document.getElementById('dtp').textContent = 
         d.toLocaleDateString('en-IN', {weekday:'short', day:'numeric', month:'short'});
     
-    // Check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+    // Saved preference wins over the system one
+    const savedTheme = localStorage.getItem(THEME_KEY);
+    if (savedTheme) {
+        setTheme(savedTheme === 'dark');
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
         setTheme(false);
     }
 
     try {
         // Use global FUEL_DATA loaded from prices.js
         const data = FUEL_DATA;
-        C = data.cities;
-        HIST = data.history;
-        
-        // Update freshness
-        const updatedAt = new Date(data.updatedAt);
-        const timeStr = updatedAt.toLocaleTimeString('en-IN', {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
-        document.getElementById('update-time').textContent = `Updated today at ${timeStr} IST`;
+        C = data.cities || [];
+        HIST = data.history || {};
+        if (!C.length) throw new Error('No cities in FUEL_DATA');
+
+        updatedAt = data.updatedAt;
+        document.getElementById('update-time').textContent = freshnessText(updatedAt);
+
+        renderGlobalRates();
 
         // LPG and CNG are now city-specific and updated in setCity()
 
         // Default cities for comparison
-        cmpCities = [C[0], C.find(c => c.name === 'Delhi') || C[1], C.find(c => c.name === 'Mumbai') || C[2]];
+        cmpCities = [C[0], C.find(c => c.name === 'Delhi'), C.find(c => c.name === 'Mumbai')]
+            .filter(Boolean)
+            .filter((c, i, arr) => arr.findIndex(x => x.name === c.name) === i);
         
         // Location logic
         const savedCityName = localStorage.getItem('fuelrate_city');
         const savedCity = savedCityName ? C.find(c => c.name === savedCityName) : null;
         
         if (savedCity) {
-            setCity(savedCity);
+            setCity(savedCity, true);
         } else if(navigator.geolocation) {
+            // Show a city immediately: an unanswered permission prompt never
+            // fires either callback, which used to leave the UI on "Detecting…"
+            setCity(C[0]);
             navigator.geolocation.getCurrentPosition(
                 p => setCity(nearest(p.coords.latitude, p.coords.longitude)),
-                () => setCity(C[0]),
+                () => {},
                 {enableHighAccuracy: true, timeout: 5000, maximumAge: 0}
             );
         } else {
@@ -60,48 +95,55 @@ async function init() {
 
 function nearest(la, lo) {
     if(!C.length) return null;
-    return C.reduce((b, c) => Math.hypot(c.la - la, c.lo - lo) < Math.hypot(b.la - la, b.lo - lo) ? c : b);
+    // Longitude degrees shrink towards the poles, so scale them before comparing
+    const k = Math.cos(la * Math.PI / 180);
+    const dist = c => Math.hypot(c.la - la, (c.lo - lo) * k);
+    return C.reduce((b, c) => dist(c) < dist(b) ? c : b);
 }
 
-function setCity(c) {
+// Brent trades in tens of dollars; anything outside this band is bad scraped data
+function plausibleCrude(v) {
+    return typeof v === 'number' && v >= 30 && v <= 200 ? v : null;
+}
+
+function renderGlobalRates() {
+    const crude = C.map(c => plausibleCrude(c.crude)).find(Boolean);
+    const brent = document.getElementById('rc-brent');
+    if (brent) brent.textContent = crude ? '$' + crude.toFixed(2) : '—';
+
+    const delhi = C.find(x => x.name === 'Delhi');
+    const delhiCng = document.getElementById('rc-cng-delhi');
+    if (delhiCng) delhiCng.textContent = delhi && delhi.cng ? '₹' + delhi.cng.toFixed(2) : '—';
+
+    const sub = updatedAt ? freshnessText(updatedAt) : '';
+    ['rc-p-sub', 'rc-d-sub'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && sub) el.textContent = sub;
+    });
+}
+
+// persist only for explicit user picks, so auto-detection stays live across visits
+function setCity(c, persist = false) {
     if(!c) return;
     city = c;
-    localStorage.setItem('fuelrate_city', c.name);
+    if (persist) localStorage.setItem('fuelrate_city', c.name);
     document.getElementById('lcity').textContent = c.name + ', ' + c.state;
     countUp('pp', c.p); 
     countUp('dp', c.d);
     
     // Dynamic Location-based LPG & CNG & Crude
-    if (c.lpg) {
-        document.getElementById('ui-lpg').textContent = '₹' + Math.floor(c.lpg);
-        if(document.getElementById('ui-lpg-rate')) {
-            document.getElementById('ui-lpg-rate').textContent = '₹' + c.lpg.toFixed(2);
-            document.getElementById('ui-lpg-rate').previousElementSibling.innerHTML = `<div class="r-name">LPG Cylinder</div><div class="r-sub">${c.state} Avg (14.2 kg)</div>`;
-        }
-    } else {
-        document.getElementById('ui-lpg').textContent = '—';
-        if(document.getElementById('ui-lpg-rate')) document.getElementById('ui-lpg-rate').textContent = '—';
-    }
-    if (c.cng) {
-        document.getElementById('ui-cng').textContent = '₹' + Math.floor(c.cng);
-        if(document.getElementById('ui-cng-rate')) {
-            document.getElementById('ui-cng-rate').textContent = '₹' + c.cng.toFixed(2);
-            document.getElementById('ui-cng-rate').previousElementSibling.innerHTML = `<div class="r-name">CNG</div><div class="r-sub">${c.state} Avg (per kg)</div>`;
-        }
-    } else {
-        document.getElementById('ui-cng').textContent = '—';
-        if(document.getElementById('ui-cng-rate')) document.getElementById('ui-cng-rate').textContent = '—';
-    }
+    setFuelRow('lpg', c.lpg, 'LPG Cylinder', `${c.state} Avg (14.2 kg)`);
+    setFuelRow('cng', c.cng, 'CNG', `${c.state} Avg (per kg)`);
     // Crude usually isn't city specific but update if the data object passes it along with city
-    if (c.crude) {
-        if(document.getElementById('ui-cr')) document.getElementById('ui-cr').textContent = '$' + c.crude;
+    const cr = document.getElementById('ui-cr');
+    if (cr) {
+        const crude = plausibleCrude(c.crude);
+        cr.textContent = crude ? '$' + crude.toFixed(2) : '—';
     }
     
-    // Calculate simple badge change based on last history (mock for now)
-    const pDiff = +(c.p - HIST.p[5]).toFixed(2);
-    const dDiff = +(c.d - HIST.d[5]).toFixed(2);
-    badge('pb', pDiff);
-    badge('db', dDiff);
+    // Day-on-day change, from this city's own history when available
+    badge('pb', dayChange(c, 'p'));
+    badge('db', dayChange(c, 'd'));
     
     document.getElementById('rc-city').textContent = c.name;
     document.getElementById('rc-p').textContent = '₹' + c.p.toFixed(2);
@@ -122,6 +164,23 @@ function setCity(c) {
     }
 }
 
+function setFuelRow(kind, value, name, sub) {
+    const pill = document.getElementById('ui-' + kind);
+    const rate = document.getElementById('ui-' + kind + '-rate');
+    const lbl = document.getElementById('ui-' + kind + '-lbl');
+    if (pill) pill.textContent = value ? '₹' + Math.round(value) : '—';
+    if (rate) rate.textContent = value ? '₹' + value.toFixed(2) : '—';
+    if (lbl && value) lbl.innerHTML = `<div class="r-name">${name}</div><div class="r-sub">${sub}</div>`;
+}
+
+function dayChange(c, t) {
+    const s = seriesFor(c, t);
+    if (!s || s.length < 2) return null;
+    const prev = s[s.length - 2];
+    if (typeof prev !== 'number') return null;
+    return +(c[t] - prev).toFixed(2);
+}
+
 function countUp(id, target) {
     const el = document.getElementById(id);
     const t0 = Date.now(), dur = 680;
@@ -136,10 +195,16 @@ function countUp(id, target) {
 
 function badge(id, diff) {
     const el = document.getElementById(id);
+    if (diff === null) {
+        el.className = 'cbadge nn';
+        el.innerHTML = `<i data-lucide="minus" width="12" height="12"></i> No data`;
+        if(window.lucide) lucide.createIcons();
+        return;
+    }
     el.className = 'cbadge ' + (diff > 0 ? 'up' : diff < 0 ? 'dn' : 'nn');
     
     let icon = diff > 0 ? 'trending-up' : diff < 0 ? 'trending-down' : 'minus';
-    let text = diff > 0 ? `₹${diff}` : diff < 0 ? `₹${Math.abs(diff)}` : 'No change';
+    let text = diff > 0 ? `₹${diff.toFixed(2)}` : diff < 0 ? `₹${Math.abs(diff).toFixed(2)}` : 'No change';
     
     el.innerHTML = `<i data-lucide="${icon}" width="12" height="12"></i> ${text}`;
     if(window.lucide) lucide.createIcons();
@@ -149,8 +214,9 @@ function getCv(v) { return getComputedStyle(document.documentElement).getPropert
 
 function drawChart(t) {
     tab = t;
-    const data = HIST[t];
+    const data = seriesFor(city, t);
     if(!data) return;
+    const labels = dayLabels(data.length);
     
     const col = t === 'p' ? getCv('--pe') : getCv('--di');
     const cv = document.getElementById('cv');
@@ -160,7 +226,7 @@ function drawChart(t) {
     ch = new Chart(cv, {
         type: 'line',
         data: {
-            labels: DAYS, 
+            labels, 
             datasets: [{
                 data, 
                 borderColor: col, 
@@ -203,7 +269,7 @@ function drawChart(t) {
             }
         }
     });
-    document.getElementById('cdays').innerHTML = DAYS.map(d => `<span>${d}</span>`).join('');
+    document.getElementById('cdays').innerHTML = labels.map(d => `<span>${d}</span>`).join('');
 }
 
 window.swTab = function(t, btn) {
@@ -229,7 +295,7 @@ function renderNB(c) {
 
 window.setCityC = function(name) {
     const c = C.find(x => x.name === name);
-    if(c) setCity(c);
+    if(c) setCity(c, true);
 };
 
 function renderCmp() {
@@ -259,9 +325,9 @@ function renderCmp() {
     const exp = sorted[sorted.length - 1];
     
     document.getElementById('crows').innerHTML = cmpCities.map(c => {
-        const diff = (c.p - base.p).toFixed(2);
+        const diff = +(c.p - base.p).toFixed(2);
         const dc = diff > 0 ? 'pos' : diff < 0 ? 'neg' : '';
-        const dcTxt = diff > 0 ? '+' + diff : diff;
+        const dcTxt = (diff > 0 ? '+' : '') + diff.toFixed(2);
         return `
             <div class="cmp-row${c.name === cheap.name ? ' cheap' : ''}">
                 <div><div class="cr-city">${c.name}</div><div class="cr-st">${c.state}</div></div>
@@ -336,7 +402,7 @@ window.selC = function(name) {
             renderCmp();
         }
     } else {
-        setCity(c);
+        setCity(c, true);
     }
     window.closeM();
 }
@@ -345,7 +411,7 @@ let cur = 'home';
 window.goS = function(s) {
     document.querySelectorAll('.screen').forEach(el => {
         el.classList.remove('hide', 'left');
-        if(el.id !== 's-' + s) el.classList.add(cur === 'home' && s !== 'home' ? 'hide' : 'hide');
+        if(el.id !== 's-' + s) el.classList.add('hide');
     });
     
     document.getElementById('s-' + s).classList.remove('hide', 'left');
@@ -358,9 +424,10 @@ window.goS = function(s) {
     if(s === 'compare') renderCmp();
 }
 
-function setTheme(isDark) {
+function setTheme(isDark, persist = false) {
     dark = isDark;
     document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    if (persist) localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light');
     
     if(dark) {
         document.querySelector('.icon-sun').style.display = 'block';
@@ -374,8 +441,12 @@ function setTheme(isDark) {
 }
 
 document.getElementById('thbtn').onclick = function() {
-    setTheme(!dark);
+    setTheme(!dark, true);
 };
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') document.querySelectorAll('.mover.on').forEach(m => m.classList.remove('on'));
+});
 
 // Start logic
 window.addEventListener('DOMContentLoaded', init);
@@ -432,17 +503,22 @@ window.refreshData = async function() {
     const freshData = fn();
     
     // Re-apply
-    C = freshData.cities;
-    HIST = freshData.history;
-    
-    const updatedAt = new Date(freshData.updatedAt);
-    const timeStr = updatedAt.toLocaleTimeString('en-IN', {hour: '2-digit', minute:'2-digit', timeZone: 'Asia/Kolkata'});
-    document.getElementById('update-time').textContent = `Updated today at ${timeStr} IST`;
-    
+    C = freshData.cities || [];
+    HIST = freshData.history || {};
+    if (!C.length) throw new Error('No cities in refreshed data');
+
+    updatedAt = freshData.updatedAt;
+    document.getElementById('update-time').textContent = freshnessText(updatedAt);
+    renderGlobalRates();
+
+    // Keep the comparison list pointing at the refreshed city objects
+    cmpCities = cmpCities.map(c => C.find(x => x.name === c.name)).filter(Boolean);
+
     // Re-set city (use saved or current)
     const savedName = localStorage.getItem('fuelrate_city');
     const match = savedName ? C.find(c => c.name === savedName) : null;
-    setCity(match || city || C[0]);
+    setCity(match || (city && C.find(c => c.name === city.name)) || C[0]);
+    if (cur === 'compare') renderCmp();
     
     // Also refresh the SW itself
     if (navigator.serviceWorker && navigator.serviceWorker.controller) {

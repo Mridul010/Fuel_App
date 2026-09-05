@@ -35,8 +35,8 @@ const FUEL_DATA = {
       "cng": 77.09,
       "la": 9.26,
       "lo": 76.78,
-      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-pathananthitta.html",
-      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-pathananthitta.html",
+      "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-pathanamthitta.html",
+      "d_goodreturns_url": "https://www.goodreturns.in/diesel-price-in-pathanamthitta.html",
       "crude": 24.23
     },
     {

@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 const JS_PATH = path.join(__dirname, '../data/prices.js');
+const HISTORY_DAYS = 7;
 
 async function getHtml(browser, url) {
     if (!url) return { html: null, finalUrl: url };
@@ -236,13 +237,51 @@ async function scrapePrice(browser, url, cityName, cityKeywords, min=50, max=200
     // ============================================================
     if (val) {
         console.log(`  >>> RESULT for ${cityName}: ${val}`);
-    } else if (fallback) {
-        console.log(`  >>> FALLBACK for ${cityName}: ${fallback} (no city-specific match)`);
-    } else {
-        console.log(`  >>> NO PRICE for ${cityName}`);
+        return val;
     }
-    
-    return val || fallback;
+    // Without a confirmed city page the fallback is very likely another city's price
+    if (fallback && cityMatched) {
+        console.log(`  >>> FALLBACK for ${cityName}: ${fallback} (no city-specific match)`);
+        return fallback;
+    }
+    console.log(`  >>> NO PRICE for ${cityName}`);
+    return null;
+}
+
+// Brent trades in tens of dollars; anything outside this band is a mis-parse
+function isPlausibleCrude(v) {
+    return typeof v === 'number' && v >= 30 && v <= 200;
+}
+
+function extractCrude(html) {
+    const $ = cheerio.load(html);
+    const text = $('body').text().replace(/\s+/g, ' ');
+    const patterns = [
+        /crude\s*oil[^$\d]{0,40}\$\s*([\d,]+\.?\d*)/i,
+        /crude[^$\d]{0,40}\$\s*([\d,]+\.?\d*)/i,
+        /crude\s*oil[^\d]{0,40}([\d,]+\.?\d*)\s*(?:usd|\/?\s*(?:bbl|barrel))/i,
+        /(?:brent|crude)[^\d]{0,40}(?:rs\.?|\u20b9)\s*([\d,]+\.?\d*)/i
+    ];
+    for (const re of patterns) {
+        const m = text.match(re);
+        if (!m) continue;
+        let v = parseFloat(m[1].replace(/,/g, ''));
+        if (isNaN(v)) continue;
+        // Some pages quote crude per barrel in rupees
+        if (v > 1000) v = parseFloat((v / 83.5).toFixed(2));
+        if (isPlausibleCrude(v)) return v;
+    }
+    return null;
+}
+
+// One history entry per calendar day: re-runs on the same day overwrite it
+function pushHistory(series, value, sameDay) {
+    if (typeof value !== 'number') return;
+    if (sameDay && series.length) series[series.length - 1] = value;
+    else {
+        series.push(value);
+        while (series.length > HISTORY_DAYS) series.shift();
+    }
 }
 
 async function run() {
@@ -258,18 +297,17 @@ async function run() {
     });
 
     console.log('Extracting Global Crude...');
-    let globalCrude = 89.50;
+    // Keep yesterday's value rather than overwriting it with a bad parse
+    const previousCrude = data.cities.map(c => c.crude).find(v => isPlausibleCrude(v));
+    let globalCrude = previousCrude || 89.50;
     const { html: mainHtml } = await getHtml(browser, 'https://www.goodreturns.in/petrol-price.html');
     if (mainHtml) {
-        const crMatch = mainHtml.match(/Crude.*?([\d,]{2,}\.?\d*)/i);
-        if (crMatch) {
-            const crVal = parseFloat(crMatch[1].replace(/,/g, ''));
-            if (crVal > 1000) {
-                globalCrude = parseFloat((crVal / 83.5).toFixed(2));
-            } else {
-                globalCrude = crVal;
-            }
+        const scraped = extractCrude(mainHtml);
+        if (scraped) {
+            globalCrude = scraped;
             console.log('Global Crude determined as:', globalCrude);
+        } else {
+            console.log('Could not extract a plausible crude price, keeping', globalCrude);
         }
     }
 
@@ -289,12 +327,12 @@ async function run() {
             const p = await scrapePrice(browser, c.goodreturns_url, c.name, cityKeywords, 50, 150);
             if (p) c.p = p;
             
-            const lpgUrl = c.goodreturns_url.replace('petrol', 'lpg');
+            const lpgUrl = c.goodreturns_url.replace('petrol-price-in-', 'lpg-price-in-');
             const lpgKeywords = getCityKeywords(c.name, lpgUrl);
             const lpg = await scrapePrice(browser, lpgUrl, c.name, lpgKeywords, 600, 1500);
             if (lpg) c.lpg = lpg;
             
-            const cngUrl = c.goodreturns_url.replace('petrol', 'cng');
+            const cngUrl = c.goodreturns_url.replace('petrol-price-in-', 'cng-price-in-');
             const cngKeywords = getCityKeywords(c.name, cngUrl);
             const cng = await scrapePrice(browser, cngUrl, c.name, cngKeywords, 40, 150);
             if (cng) c.cng = cng;
@@ -319,15 +357,35 @@ async function run() {
     
     await browser.close();
 
-    const baseCity = data.cities[0];
-    data.history.p.shift();
-    data.history.d.shift();
-    data.history.days.shift();
-    data.history.p.push(baseCity.p);
-    data.history.d.push(baseCity.d);
-    
     const d = new Date();
-    data.history.days.push(d.toLocaleDateString('en-IN', {weekday:'short'}));
+    const istDay = x => x.toLocaleDateString('en-CA', { timeZone: 'Asia/Kolkata' });
+    const sameDay = data.updatedAt && istDay(new Date(data.updatedAt)) === istDay(d);
+
+    data.history = data.history || {};
+    data.history.p = data.history.p || [];
+    data.history.d = data.history.d || [];
+    data.history.days = data.history.days || [];
+    data.history.cities = data.history.cities || {};
+
+    const baseCity = data.cities[0];
+    pushHistory(data.history.p, baseCity.p, sameDay);
+    pushHistory(data.history.d, baseCity.d, sameDay);
+
+    // Every city keeps its own series so the trend chart matches the selected city
+    for (const c of data.cities) {
+        const h = data.history.cities[c.name] || { p: [], d: [] };
+        pushHistory(h.p, c.p, sameDay);
+        pushHistory(h.d, c.d, sameDay);
+        data.history.cities[c.name] = h;
+    }
+
+    const dayLabel = d.toLocaleDateString('en-IN', { weekday: 'short', timeZone: 'Asia/Kolkata' });
+    if (sameDay && data.history.days.length) data.history.days[data.history.days.length - 1] = dayLabel;
+    else {
+        data.history.days.push(dayLabel);
+        while (data.history.days.length > HISTORY_DAYS) data.history.days.shift();
+    }
+
     data.updatedAt = d.toISOString();
 
     const outputContent = `const FUEL_DATA = ${JSON.stringify(data, null, 2)};\n`;
