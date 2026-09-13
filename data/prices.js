@@ -29,8 +29,8 @@ const FUEL_DATA = {
     {
       "name": "Pathanamthitta",
       "state": "Kerala",
-      "p": 114.52,
-      "d": 103.38,
+      "p": 114.88,
+      "d": 103.72,
       "lpg": 954,
       "cng": 77.09,
       "la": 9.26,
@@ -42,8 +42,8 @@ const FUEL_DATA = {
     {
       "name": "Alappuzha",
       "state": "Kerala",
-      "p": 113.88,
-      "d": 102.78,
+      "p": 114.19,
+      "d": 103.08,
       "lpg": 949,
       "cng": 96.5,
       "la": 9.49,
@@ -68,8 +68,8 @@ const FUEL_DATA = {
     {
       "name": "Idukki",
       "state": "Kerala",
-      "p": 115.06,
-      "d": 103.88,
+      "p": 114.87,
+      "d": 103.7,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.85,
@@ -94,8 +94,8 @@ const FUEL_DATA = {
     {
       "name": "Thrissur",
       "state": "Kerala",
-      "p": 114.46,
-      "d": 103.33,
+      "p": 114.62,
+      "d": 103.48,
       "lpg": 954,
       "cng": 101,
       "la": 10.52,
@@ -120,8 +120,8 @@ const FUEL_DATA = {
     {
       "name": "Malappuram",
       "state": "Kerala",
-      "p": 114.04,
-      "d": 102.95,
+      "p": 113.93,
+      "d": 102.86,
       "lpg": 950.5,
       "cng": 101,
       "la": 11.07,
@@ -146,8 +146,8 @@ const FUEL_DATA = {
     {
       "name": "Wayanad",
       "state": "Kerala",
-      "p": 114.93,
-      "d": 103.71,
+      "p": 114.85,
+      "d": 103.72,
       "lpg": 955.5,
       "cng": 101,
       "la": 11.68,
@@ -198,8 +198,8 @@ const FUEL_DATA = {
     {
       "name": "Mangaluru",
       "state": "Karnataka",
-      "p": 110.06,
-      "d": 98,
+      "p": 110.1,
+      "d": 98.03,
       "lpg": 949.5,
       "cng": 97,
       "la": 12.87,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Sun",
       "Mon",
       "Tue",
       "Wed",
       "Thu",
       "Fri",
-      "Sat"
+      "Sat",
+      "Sun"
     ]
   },
-  "updatedAt": "2026-09-12T05:28:04.470Z"
+  "updatedAt": "2026-09-13T05:43:41.666Z"
 };
