@@ -29,8 +29,8 @@ const FUEL_DATA = {
     {
       "name": "Pathanamthitta",
       "state": "Kerala",
-      "p": 114.88,
-      "d": 103.72,
+      "p": 114.52,
+      "d": 103.38,
       "lpg": 954,
       "cng": 77.09,
       "la": 9.26,
@@ -42,8 +42,8 @@ const FUEL_DATA = {
     {
       "name": "Alappuzha",
       "state": "Kerala",
-      "p": 114.19,
-      "d": 103.08,
+      "p": 113.88,
+      "d": 102.78,
       "lpg": 949,
       "cng": 96.5,
       "la": 9.49,
@@ -68,8 +68,8 @@ const FUEL_DATA = {
     {
       "name": "Idukki",
       "state": "Kerala",
-      "p": 114.87,
-      "d": 103.7,
+      "p": 115.06,
+      "d": 103.88,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.85,
@@ -84,7 +84,7 @@ const FUEL_DATA = {
       "p": 113.53,
       "d": 102.45,
       "lpg": 949,
-      "cng": 101,
+      "cng": 102.5,
       "la": 9.93,
       "lo": 76.26,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-ernakulam.html",
@@ -121,9 +121,9 @@ const FUEL_DATA = {
       "name": "Malappuram",
       "state": "Kerala",
       "p": 113.93,
-      "d": 102.86,
+      "d": 102.95,
       "lpg": 950.5,
-      "cng": 101,
+      "cng": 102.5,
       "la": 11.07,
       "lo": 76.07,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-malappuram.html",
@@ -136,7 +136,7 @@ const FUEL_DATA = {
       "p": 113.79,
       "d": 102.71,
       "lpg": 950.5,
-      "cng": 101,
+      "cng": 102.5,
       "la": 11.25,
       "lo": 75.77,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kozhikode.html",
@@ -146,7 +146,7 @@ const FUEL_DATA = {
     {
       "name": "Wayanad",
       "state": "Kerala",
-      "p": 114.85,
+      "p": 114.93,
       "d": 103.72,
       "lpg": 955.5,
       "cng": 101,
@@ -175,7 +175,7 @@ const FUEL_DATA = {
       "p": 114.74,
       "d": 103.61,
       "lpg": 962,
-      "cng": 101,
+      "cng": 102.5,
       "la": 12.5,
       "lo": 74.98,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kasaragod.html",
@@ -188,7 +188,7 @@ const FUEL_DATA = {
       "p": 103.58,
       "d": 93.79,
       "lpg": 802.5,
-      "cng": 101,
+      "cng": 102.5,
       "la": 11.7,
       "lo": 75.53,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-mahe.html",
@@ -237,7 +237,7 @@ const FUEL_DATA = {
     {
       "name": "Chennai",
       "state": "Tamil Nadu",
-      "p": 107.77,
+      "p": 107.76,
       "d": 99.55,
       "lpg": 957.5,
       "cng": 97.5,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Mon",
       "Tue",
       "Wed",
       "Thu",
       "Fri",
       "Sat",
-      "Sun"
+      "Sun",
+      "Mon"
     ]
   },
-  "updatedAt": "2026-09-13T05:43:41.666Z"
+  "updatedAt": "2026-09-14T05:53:04.076Z"
 };
