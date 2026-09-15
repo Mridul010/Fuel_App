@@ -42,8 +42,8 @@ const FUEL_DATA = {
     {
       "name": "Alappuzha",
       "state": "Kerala",
-      "p": 113.88,
-      "d": 102.78,
+      "p": 114.19,
+      "d": 103.08,
       "lpg": 949,
       "cng": 96.5,
       "la": 9.49,
@@ -97,7 +97,7 @@ const FUEL_DATA = {
       "p": 114.62,
       "d": 103.48,
       "lpg": 954,
-      "cng": 101,
+      "cng": 102.5,
       "la": 10.52,
       "lo": 76.21,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-thrissur.html",
@@ -110,7 +110,7 @@ const FUEL_DATA = {
       "p": 114.55,
       "d": 103.41,
       "lpg": 960.5,
-      "cng": 101,
+      "cng": 102.5,
       "la": 10.78,
       "lo": 76.65,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-palakkad.html",
@@ -120,7 +120,7 @@ const FUEL_DATA = {
     {
       "name": "Malappuram",
       "state": "Kerala",
-      "p": 113.93,
+      "p": 114.04,
       "d": 102.95,
       "lpg": 950.5,
       "cng": 102.5,
@@ -147,9 +147,9 @@ const FUEL_DATA = {
       "name": "Wayanad",
       "state": "Kerala",
       "p": 114.93,
-      "d": 103.72,
+      "d": 103.71,
       "lpg": 955.5,
-      "cng": 101,
+      "cng": 102.5,
       "la": 11.68,
       "lo": 76.13,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-wayanad.html",
@@ -162,7 +162,7 @@ const FUEL_DATA = {
       "p": 113.79,
       "d": 102.71,
       "lpg": 962,
-      "cng": 101,
+      "cng": 102.5,
       "la": 11.87,
       "lo": 75.37,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kannur.html",
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Tue",
       "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
-      "Mon"
+      "Mon",
+      "Tue"
     ]
   },
-  "updatedAt": "2026-09-14T05:53:04.076Z"
+  "updatedAt": "2026-09-15T05:55:51.855Z"
 };
