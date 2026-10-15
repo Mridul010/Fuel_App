@@ -146,8 +146,8 @@ const FUEL_DATA = {
     {
       "name": "Wayanad",
       "state": "Kerala",
-      "p": 114.85,
-      "d": 103.72,
+      "p": 115.01,
+      "d": 103.76,
       "lpg": 955.5,
       "cng": 102.5,
       "la": 11.68,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Thu",
       "Fri",
       "Sat",
       "Sun",
       "Mon",
       "Tue",
-      "Wed"
+      "Wed",
+      "Thu"
     ]
   },
-  "updatedAt": "2026-10-14T05:54:25.004Z"
+  "updatedAt": "2026-10-15T05:37:07.547Z"
 };
