@@ -120,8 +120,8 @@ const FUEL_DATA = {
     {
       "name": "Malappuram",
       "state": "Kerala",
-      "p": 114.03,
-      "d": 102.94,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 950.5,
       "cng": 102.5,
       "la": 11.07,
@@ -172,8 +172,8 @@ const FUEL_DATA = {
     {
       "name": "Kasaragod",
       "state": "Kerala",
-      "p": 115.5,
-      "d": 104.37,
+      "p": 115.16,
+      "d": 104,
       "lpg": 962,
       "cng": 102.5,
       "la": 12.5,
@@ -266,7 +266,7 @@ const FUEL_DATA = {
       "p": 111.21,
       "d": 97.83,
       "lpg": 941.5,
-      "cng": 88,
+      "cng": 89,
       "la": 19.07,
       "lo": 72.87,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-mumbai.html",
@@ -279,7 +279,7 @@ const FUEL_DATA = {
       "p": 113.51,
       "d": 99.82,
       "lpg": 968,
-      "cng": 93.5,
+      "cng": 103,
       "la": 22.57,
       "lo": 88.36,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-kolkata.html",
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Fri",
       "Sat",
       "Sun",
       "Mon",
       "Tue",
       "Wed",
-      "Thu"
+      "Thu",
+      "Fri"
     ]
   },
-  "updatedAt": "2026-10-15T05:37:07.547Z"
+  "updatedAt": "2026-10-16T05:31:46.211Z"
 };
