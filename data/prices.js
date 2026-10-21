@@ -198,8 +198,8 @@ const FUEL_DATA = {
     {
       "name": "Mangaluru",
       "state": "Karnataka",
-      "p": 110.06,
-      "d": 98,
+      "p": 110.1,
+      "d": 98.03,
       "lpg": 949.5,
       "cng": 97.5,
       "la": 12.87,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
       "Mon",
-      "Tue"
+      "Tue",
+      "Wed"
     ]
   },
-  "updatedAt": "2026-10-20T05:43:06.710Z"
+  "updatedAt": "2026-10-21T05:46:36.215Z"
 };
