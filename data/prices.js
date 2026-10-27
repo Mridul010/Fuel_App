@@ -120,8 +120,8 @@ const FUEL_DATA = {
     {
       "name": "Malappuram",
       "state": "Kerala",
-      "p": 114.03,
-      "d": 102.94,
+      "p": 114.04,
+      "d": 102.95,
       "lpg": 950.5,
       "cng": 102.5,
       "la": 11.07,
@@ -198,8 +198,8 @@ const FUEL_DATA = {
     {
       "name": "Mangaluru",
       "state": "Karnataka",
-      "p": 110.1,
-      "d": 98.03,
+      "p": 110.15,
+      "d": 98.08,
       "lpg": 949.5,
       "cng": 97.5,
       "la": 12.87,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Tue",
       "Wed",
       "Thu",
       "Fri",
       "Sat",
       "Sun",
-      "Mon"
+      "Mon",
+      "Tue"
     ]
   },
-  "updatedAt": "2026-10-26T05:49:14.847Z"
+  "updatedAt": "2026-10-27T06:01:03.406Z"
 };
