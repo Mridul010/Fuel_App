@@ -198,10 +198,10 @@ const FUEL_DATA = {
     {
       "name": "Mangaluru",
       "state": "Karnataka",
-      "p": 110.06,
-      "d": 98,
+      "p": 110.1,
+      "d": 98.03,
       "lpg": 949.5,
-      "cng": 97.5,
+      "cng": 98.5,
       "la": 12.87,
       "lo": 74.84,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-dakshina-kannada.html",
@@ -224,10 +224,10 @@ const FUEL_DATA = {
     {
       "name": "Bengaluru",
       "state": "Karnataka",
-      "p": 111.68,
-      "d": 99.56,
+      "p": 110.93,
+      "d": 98.8,
       "lpg": 944.5,
-      "cng": 98,
+      "cng": 99,
       "la": 12.97,
       "lo": 77.59,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-bangalore.html",
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Sun",
       "Mon",
       "Tue",
       "Wed",
       "Thu",
       "Fri",
-      "Sat"
+      "Sat",
+      "Sun"
     ]
   },
-  "updatedAt": "2026-10-31T06:42:05.544Z"
+  "updatedAt": "2026-11-01T07:10:59.838Z"
 };
