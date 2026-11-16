@@ -107,8 +107,8 @@ const FUEL_DATA = {
     {
       "name": "Palakkad",
       "state": "Kerala",
-      "p": 114.55,
-      "d": 103.41,
+      "p": 114.78,
+      "d": 103.63,
       "lpg": 960.5,
       "cng": 102.5,
       "la": 10.78,
@@ -266,7 +266,7 @@ const FUEL_DATA = {
       "p": 111.21,
       "d": 97.83,
       "lpg": 941.5,
-      "cng": 89,
+      "cng": 91.5,
       "la": 19.07,
       "lo": 72.87,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-mumbai.html",
@@ -292,7 +292,7 @@ const FUEL_DATA = {
       "p": 116.15,
       "d": 104.23,
       "lpg": 994,
-      "cng": 112,
+      "cng": 115,
       "la": 17.38,
       "lo": 78.47,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-hyderabad.html",
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Mon",
       "Tue",
       "Wed",
       "Thu",
       "Fri",
       "Sat",
-      "Sun"
+      "Sun",
+      "Mon"
     ]
   },
-  "updatedAt": "2026-11-15T07:36:55.148Z"
+  "updatedAt": "2026-11-16T07:42:23.150Z"
 };
