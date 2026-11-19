@@ -173,7 +173,7 @@ const FUEL_DATA = {
       "name": "Kasaragod",
       "state": "Kerala",
       "p": 115.16,
-      "d": 104.37,
+      "d": 104,
       "lpg": 962,
       "cng": 102.5,
       "la": 12.5,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Thu",
       "Fri",
       "Sat",
       "Sun",
       "Mon",
       "Tue",
-      "Wed"
+      "Wed",
+      "Thu"
     ]
   },
-  "updatedAt": "2026-11-18T08:15:28.663Z"
+  "updatedAt": "2026-11-19T08:27:25.435Z"
 };
