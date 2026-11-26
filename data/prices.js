@@ -68,8 +68,8 @@ const FUEL_DATA = {
     {
       "name": "Idukki",
       "state": "Kerala",
-      "p": 115.33,
-      "d": 104.06,
+      "p": 115.22,
+      "d": 103.92,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.85,
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Thu",
       "Fri",
       "Sat",
       "Sun",
       "Mon",
       "Tue",
-      "Wed"
+      "Wed",
+      "Thu"
     ]
   },
-  "updatedAt": "2026-11-25T09:36:59.874Z"
+  "updatedAt": "2026-11-26T09:12:52.882Z"
 };
