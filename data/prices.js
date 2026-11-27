@@ -68,8 +68,8 @@ const FUEL_DATA = {
     {
       "name": "Idukki",
       "state": "Kerala",
-      "p": 115.22,
-      "d": 103.92,
+      "p": 115.33,
+      "d": 104.06,
       "lpg": 949,
       "cng": 77.09,
       "la": 9.85,
@@ -214,7 +214,7 @@ const FUEL_DATA = {
       "p": 108.63,
       "d": 100.45,
       "lpg": 971,
-      "cng": 96.9,
+      "cng": 99.8,
       "la": 11.01,
       "lo": 76.97,
       "goodreturns_url": "https://www.goodreturns.in/petrol-price-in-coimbatore.html",
@@ -320,14 +320,14 @@ const FUEL_DATA = {
       96.48
     ],
     "days": [
-      "Fri",
       "Sat",
       "Sun",
       "Mon",
       "Tue",
       "Wed",
-      "Thu"
+      "Thu",
+      "Fri"
     ]
   },
-  "updatedAt": "2026-11-26T09:12:52.882Z"
+  "updatedAt": "2026-11-27T09:28:16.173Z"
 };
